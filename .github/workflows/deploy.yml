@@ -21,6 +21,7 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Read environment variable
+        run: |
         env:
           MY_SECRET: ${{ secrets.MY_SECRET }}
       - name: Install, build, and upload your site

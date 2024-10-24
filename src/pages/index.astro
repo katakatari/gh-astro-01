@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
-const secret1 = import.meta.env.MY_SECRET;
-const secret2 = import.meta.env.PUBLIC_SECRET;
-const secret11 = import.meta.env.MY_OTHER_SECRET;
-const secret12 = import.meta.env.PUBLIC_OTHER_SECRET;
+const secret1 = process.env.MY_SECRET;
+const secret2 = process.env.PUBLIC_SECRET;
+const secret11 = process.env.MY_OTHER_SECRET;
+const secret12 = process.env.PUBLIC_OTHER_SECRET;
 ---
 
 <Layout title="Welcome to Astro.">
@@ -68,6 +68,7 @@ const secret12 = import.meta.env.PUBLIC_OTHER_SECRET;
 		{secret1}
 		{secret2}
 		{secret11}
+		{secret12}
 		{secret12}
 	</main>
 </Layout>

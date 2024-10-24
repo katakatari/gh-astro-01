@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 const secret = import.meta.env.MY_SECRET;
-const notOnGithub = import.meta.env.NOT_ON_GITHUB;
 ---
 
 <Layout title="Welcome to Astro.">
@@ -64,7 +63,6 @@ const notOnGithub = import.meta.env.NOT_ON_GITHUB;
 			/>
 		</ul>
 		{secret}
-		{notOnGithub}
 	</main>
 </Layout>
 

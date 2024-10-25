@@ -7,12 +7,19 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LuMoon, LuSun } from "react-icons/lu";
+import { LuMonitor, LuMoon, LuSun } from "react-icons/lu";
+
+type Theme = "theme-light" | "dark" | "system";
+const themes = ["theme-light", "dark", "system"] as const;
+
+const displayTheme = (value: Theme, currentValue: Theme) => {
+  if (value === currentValue) {
+    return value === "theme-light" ? "light active" : `${value} active`;
+  } else return value === "theme-light" ? "light" : value;
+};
 
 export function ModeToggle() {
-  const [theme, setThemeState] = React.useState<
-    "theme-light" | "dark" | "system"
-  >("theme-light");
+  const [theme, setThemeState] = React.useState<Theme>("theme-light");
 
   React.useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains("dark");
@@ -29,22 +36,36 @@ export function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <LuSun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <LuMoon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full aspect-square"
+        >
+          {theme === "theme-light" && (
+            <LuSun className="h-[1.2rem] w-[1.2rem] transition-all" />
+          )}
+          {theme === "dark" && (
+            <LuMoon className="h-[1.2rem] w-[1.2rem] transition-all" />
+          )}
+          {theme === "system" && (
+            <LuMonitor className="h-[1.2rem] w-[1.2rem] transition-all" />
+          )}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setThemeState("theme-light")}>
-          Light {theme === "theme-light" && "active"}
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setThemeState("system")}>
-          System
-        </DropdownMenuItem>
+      <DropdownMenuContent
+        align="end"
+        className="bg-background capitalize"
+      >
+        {themes.map((item) => (
+          <DropdownMenuItem
+            key={item}
+            onClick={() => setThemeState(item)}
+            className="hover:bg-foreground/70 font-bold hover:text-background cursor-pointer"
+          >
+            {displayTheme(item, theme)}
+          </DropdownMenuItem>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );

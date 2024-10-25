@@ -5,7 +5,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: [
-					"Sono",
+					"Lato",
 					"ui-sans-serif",
 					"system-ui",
 					"-apple-system",
@@ -23,7 +23,8 @@ export default {
 				]
 			},
 			colors: {
-				background: "hsl(var(--background))"
+				background: "hsl(var(--background))",
+				foreground: "hsl(var(--foreground))",
 			}
 		},
 	},

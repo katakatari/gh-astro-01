@@ -1,12 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Sono:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Outfit:wght@100..900&family=Sono:wght@200..800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    /* white */
+    /* --background: 0 0% 100%; */
+    /* light gray */
+    --background: 0 0% 96.08%;
+    /* ivory */
+    /* --background: 60 100% 97.06%; */
+    /* beige */
+    /* --background: 60, 55.56%, 91.18%; */
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -32,13 +38,14 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
+    --accent-main: 266.59 80.73% 57.25%;
+    --accent-light: 266.09 82.14% 89.02%;
+    --accent-dark: 265.71 81.98% 21.76%;
     --accent-gradient: linear-gradient(
       45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
-      white 60%
+      hsl(var(--accent)),
+      hsl(var(--accent-dark)) 30%,
+      black 60%
     );
   }
 
@@ -68,12 +75,13 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
 
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
+    --accent-main: 266.59 80.73% 57.25%;
+    --accent-light: 160 100% 75%;
+    --accent-dark: 265.71 81.98% 21.76%;
     --accent-gradient: linear-gradient(
       45deg,
-      rgb(var(--accent)),
-      rgb(var(--accent-light)) 30%,
+      hsl(var(--primary)),
+      hsl(var(--accent-light)) 30%,
       white 60%
     );
   }
@@ -95,6 +103,6 @@ code {
   background-image: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-size: 400%;
+  background-size: 300%;
   background-position: 0%;
 }

@@ -6,7 +6,9 @@ interface Props {
 const { title } = Astro.props;
 
 import Header from "@components/global/header.astro";
+import { getBaseUrl } from "@lib/utils";
 import "@styles/global.css";
+const url = getBaseUrl();
 ---
 
 <script is:inline>
@@ -38,7 +40,7 @@ import "@styles/global.css";
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href=`${url}/favicon.svg` />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>

@@ -35,18 +35,21 @@ const data = [
         <header className="space-y-3">
           <h3 className="text-4xl font-semibold">Developing Katakatari</h3>
           <div className="py-2 px-4 bg-border rounded-lg">
-            <p className="text-lg font-bold">Tech Stack</p>
+            <p className="text-lg font-bold text-inherit transition-colors duration-300">
+              Tech Stack
+            </p>
             <ul className="inline-flex py-2 gap-4">
               {techStacks.map((stack) => (
                 <li
                   key={stack}
-                  className="group/li capitalize rounded-full p-2 hover:bg-primary bg-foreground hover:text-neutral-100 text-background"
+                  className="group/li capitalize rounded-full p-2 bg-foreground hover:bg-primary hover:text-neutral-100 text-background"
                 >
                   <span className="relative transition-colors ease-in-out">
-                    <p className="group-hover/li:block hidden absolute bottom-10 rounded-lg px-2 bg-primary right-[50%] translate-x-[50%] font-bold">
-                      {stack}
+                    <p className="group-hover/li:block hidden absolute bottom-10 rounded-lg px-2 bg-primary right-[50%] translate-x-[50%] font-bold text-center">
+                      {stack === "github" ? stack + " pages" : stack}
                     </p>
                     <Icon name={stack} />
+                    {/* <div className="absolute top-auto bottom-0 group-hover/li:h-full h-0 bg-primary transition-colors duration-300 w-full scale-150" /> */}
                   </span>
                 </li>
               ))}
@@ -59,51 +62,44 @@ const data = [
           natus repellat eum aspernatur laboriosam eligendi iusto animi harum
           vitae eos?
         </p>
-        <div className="grid grid-cols-2 gap-4">
-          <a href={`${url}/gallery`}>
-            <FocusCard
-              title={`Gallery`}
-            >
-              <img
-                src="https://ik.imagekit.io/ah0ec7izw/Japan/20221124_213803.JPG?updatedAt=1729926775701"
-                alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
-                className="object-cover aspect-square"
-              />
-            </FocusCard>
-          </a>
+        <div className="grid md:grid-cols-2 gap-4">
+          <FocusCard
+            title={`Gallery`}
+          >
+            <img
+              src="https://ik.imagekit.io/ah0ec7izw/Japan/20221124_213803.JPG?updatedAt=1729926775701"
+              alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
+              className="object-cover md:aspect-square aspect-video h-full w-full"
+            />
+          </FocusCard>
 
-          <a href={`${url}/code`}>
-            <FocusCard
-              title="Code"
-              className="hover:bg-primary bg-primary/30 group/code"
-            >
-              <img
-                src="https://ik.imagekit.io/ah0ec7izw/Code/html-image.png?updatedAt=1729957241891"
-                alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
-                className="scale-[3d(1.3,_1.6,_2)] transition-all object-contain"
-              />
-            </FocusCard>
-          </a>
+          <FocusCard
+            title={`Code\nPicture by Pexels`}
+            className="group/code"
+          >
+            <img
+              src="https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Pictures by Pexels\nMatrix"
+              className="skew-x-[30deg] transition-all md:aspect-square h-full w-full aspect-video group-hover/code:object-cover object-fill group-hover/code:transform-none scale-[200%] group-hover/code:scale-0 ease-in-out duration-500"
+            />
+          </FocusCard>
 
-          <a href={`${url}/blog`}>
-            <FocusCard
-              title={`Pictures by Pexels\nBlog`}
-            >
-              <img
-                src="https://images.pexels.com/photos/28075061/pexels-photo-28075061/free-photo-of-weeds-on-beach-on-shore.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-                alt="Pictures by Pexels\nfree photo of weeds on beach on shore"
-              />
-            </FocusCard>
-          </a>
-          <a href={`${url}/travel`}>
-            <FocusCard title="Travel">
-              <img
-                src="https://ik.imagekit.io/ah0ec7izw/Japan/DSC_0153.JPG?updatedAt=1729927312890"
-                alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
-                className="object-cover aspect-square"
-              />
-            </FocusCard>
-          </a>
+          <FocusCard
+            title={`Blog\nPictures by Pexels`}
+          >
+            <img
+              src="https://images.pexels.com/photos/28075061/pexels-photo-28075061/free-photo-of-weeds-on-beach-on-shore.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              alt="Pictures by Pexels\nfree photo of weeds on beach on shore"
+              className="object-cover md:aspect-square aspect-video h-full w-full"
+            />
+          </FocusCard>
+          <FocusCard title="Travel">
+            <img
+              src="https://ik.imagekit.io/ah0ec7izw/Japan/DSC_0153.JPG?updatedAt=1729927312890"
+              alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
+              className="object-cover md:aspect-square aspect-video h-full w-full"
+            />
+          </FocusCard>
         </div>
       </section>
     ),

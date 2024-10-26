@@ -13,27 +13,35 @@ const data = [
           vitae eos?
         </p>
         <div className="grid grid-cols-2 gap-4">
-          <FocusCard title="Pictures by Pexels\nfree photo of mountains on gloomy day">
+          <FocusCard
+            title={`Pictures by Pexels\nfree photo of mountains on gloomy day`}
+          >
             <img
               src="https://images.pexels.com/photos/18795422/pexels-photo-18795422/free-photo-of-mountains-on-gloomy-day.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
             />
           </FocusCard>
 
-          <FocusCard title="Pictures by Pexels\nfree photo of weeds on beach on shore">
+          <FocusCard
+            title={`Pictures by Pexels\nfree photo of weeds on beach on shore`}
+          >
             <img
               src="https://images.pexels.com/photos/28075061/pexels-photo-28075061/free-photo-of-weeds-on-beach-on-shore.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt="Pictures by Pexels\nfree photo of weeds on beach on shore"
             />
           </FocusCard>
 
-          <FocusCard title="Pictures by Pexels\nfree photo of weeds on beach on shore">
+          <FocusCard
+            title={`Pictures by Pexels\nfree photo of weeds on beach on shore`}
+          >
             <img
               src="https://images.pexels.com/photos/28075061/pexels-photo-28075061/free-photo-of-weeds-on-beach-on-shore.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt="Pictures by Pexels\nfree photo of weeds on beach on shore"
             />
           </FocusCard>
-          <FocusCard title="Pictures by Pexels\nfree photo of mountains on gloomy day">
+          <FocusCard
+            title={`Pictures by Pexels\nfree photo of mountains on gloomy day`}
+          >
             <img
               src="https://images.pexels.com/photos/18795422/pexels-photo-18795422/free-photo-of-mountains-on-gloomy-day.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
@@ -54,27 +62,35 @@ const data = [
           nemo corrupti quo esse minus!
         </p>
         <div className="grid grid-cols-2 gap-4">
-          <FocusCard title="Pictures by Pexels\nfree photo of mountains on gloomy day">
+          <FocusCard
+            title={`Pictures by Pexels\nfree photo of mountains on gloomy day`}
+          >
             <img
               src="https://images.pexels.com/photos/18795422/pexels-photo-18795422/free-photo-of-mountains-on-gloomy-day.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
             />
           </FocusCard>
 
-          <FocusCard title="Pictures by Pexels\nfree photo of weeds on beach on shore">
+          <FocusCard
+            title={`Pictures by Pexels\nfree photo of weeds on beach on shore`}
+          >
             <img
               src="https://images.pexels.com/photos/28075061/pexels-photo-28075061/free-photo-of-weeds-on-beach-on-shore.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt="Pictures by Pexels\nfree photo of weeds on beach on shore"
             />
           </FocusCard>
 
-          <FocusCard title="Pictures by Pexels\nfree photo of weeds on beach on shore">
+          <FocusCard
+            title={`Pictures by Pexels\nfree photo of weeds on beach on shore`}
+          >
             <img
               src="https://images.pexels.com/photos/28075061/pexels-photo-28075061/free-photo-of-weeds-on-beach-on-shore.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt="Pictures by Pexels\nfree photo of weeds on beach on shore"
             />
           </FocusCard>
-          <FocusCard title="Pictures by Pexels\nfree photo of mountains on gloomy day">
+          <FocusCard
+            title={`Pictures by Pexels\nfree photo of mountains on gloomy day`}
+          >
             <img
               src="https://images.pexels.com/photos/18795422/pexels-photo-18795422/free-photo-of-mountains-on-gloomy-day.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
@@ -88,27 +104,35 @@ const data = [
     title: "Gallery",
     content: (
       <div className="grid grid-cols-2 gap-4">
-        <FocusCard title="Pictures by Pexels\nfree photo of mountains on gloomy day">
+        <FocusCard
+          title={`Pictures by Pexels\nfree photo of mountains on gloomy day`}
+        >
           <img
             src="https://images.pexels.com/photos/18795422/pexels-photo-18795422/free-photo-of-mountains-on-gloomy-day.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="Pictures by Pexels\nfree photo of mountains on gloomy day"
           />
         </FocusCard>
 
-        <FocusCard title="Pictures by Pexels\nfree photo of weeds on beach on shore">
+        <FocusCard
+          title={`Pictures by Pexels\nfree photo of weeds on beach on shore`}
+        >
           <img
             src="https://images.pexels.com/photos/28075061/pexels-photo-28075061/free-photo-of-weeds-on-beach-on-shore.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="Pictures by Pexels\nfree photo of weeds on beach on shore"
           />
         </FocusCard>
 
-        <FocusCard title="Pictures by Pexels\nfree photo of weeds on beach on shore">
+        <FocusCard
+          title={`Pictures by Pexels\nfree photo of weeds on beach on shore`}
+        >
           <img
             src="https://images.pexels.com/photos/28075061/pexels-photo-28075061/free-photo-of-weeds-on-beach-on-shore.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="Pictures by Pexels\nfree photo of weeds on beach on shore"
           />
         </FocusCard>
-        <FocusCard title="Pictures by Pexels\nfree photo of mountains on gloomy day">
+        <FocusCard
+          title={`Pictures by Pexels\nfree photo of mountains on gloomy day`}
+        >
           <img
             src="https://images.pexels.com/photos/18795422/pexels-photo-18795422/free-photo-of-mountains-on-gloomy-day.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="Pictures by Pexels\nfree photo of mountains on gloomy day"

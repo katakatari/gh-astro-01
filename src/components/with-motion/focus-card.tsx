@@ -2,11 +2,26 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
+
+/**
+ * @param {React.ReactNode} children - The child elements to be rendered inside the component.
+ * @param {string} title - The title of the focus card.
+ * 
+ * @description Use template literals for a string with ANSI escape characters.
+ * @example
+ * // Example usage:
+ * const exampleTitle = `Title\nTitle Text`;
+ * // This will render as:
+ * // Title
+ * // Title Text
+ */
 const FocusCard = React.memo(
   ({
-    data,
+    children,
+    title,
   }: {
-    data: any;
+    children: React.ReactNode;
+    title: string;
   }) => {
     const [hovered, setHovered] = React.useState<boolean | null>(null);
     return (
@@ -18,20 +33,16 @@ const FocusCard = React.memo(
           !hovered && "blur-sm scale-[0.98]",
         )}
       >
-        <img
-          src={data.src}
-          alt={data.title}
-          className="object-cover absolute inset-0"
-        />
+        {children}
         <div
           className={cn(
             "absolute inset-0 bg-black/50 flex items-end py-8 px-4 transition-opacity duration-300",
             hovered ? "opacity-100" : "opacity-0",
           )}
         >
-          <div className="text-xl md:text-2xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200 whitespace-pre-wrap">
-            {data.title}
-          </div>
+          <p className="text-xl md:text-2xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200 whitespace-pre-wrap">
+            {title}
+          </p>
         </div>
       </div>
     );

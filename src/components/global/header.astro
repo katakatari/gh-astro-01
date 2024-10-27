@@ -1,26 +1,28 @@
 ---
-import Nav from "@components/primitives/nav";
 import { ModeToggle } from "../ui/mode-toggle";
 import { getBaseUrl } from "@lib/utils";
 const url = getBaseUrl();
 ---
 
-<Nav
-  className="sticky top-4 z-50 mx-auto flex max-w-fit items-center justify-between rounded-full bg-background p-4 shadow-sm shadow-foreground md:fixed md:right-4 md:ml-auto"
+<header
+  class="sticky top-4 z-50 mx-auto flex max-w-fit items-center justify-between rounded-full bg-background p-4 shadow-sm shadow-foreground md:fixed md:right-4 md:ml-auto"
 >
-  <ul class="flex items-center gap-4">
-    <li>
-      <a href=`${url}/` class="text-gradient text-2xl font-bold">Katakatari</a>
-    </li>
-    <li>
-      <a href=`${url}/`>Gallery</a>
-    </li>
-    <li>
-      <a href=`${url}/`>Blog</a>
-    </li>
-    <li>
-      <a href=`${url}/`>Code</a>
-    </li>
-    <ModeToggle client:load />
-  </ul>
-</Nav>
+  <nav>
+    <ul class="flex items-center gap-4">
+      <li>
+        <a href=`${url}/` class="text-gradient text-2xl font-bold">Katakatari</a
+        >
+      </li>
+      <li>
+        <a href=`${url}/`>Gallery</a>
+      </li>
+      <li>
+        <a href=`${url}/`>Blog</a>
+      </li>
+      <li>
+        <a href=`${url}/`>Code</a>
+      </li>
+      <ModeToggle client:load />
+    </ul>
+  </nav>
+</header>

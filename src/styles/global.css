@@ -1,11 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Outfit:wght@100..900&family=Sono:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --font-sans: Lato;
+    --font-sans: "Nunito Sans";
 
     /* white */
     /* --background: 0 0% 100%; */
@@ -52,7 +53,7 @@
   }
 
   .dark {
-    --font-sans: Lato;
+    --font-sans: "Nunito Sans";
 
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -118,5 +119,27 @@ code {
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1 {
+    @apply text-6xl;
+  }
+  h2 {
+    @apply text-4xl;
+  }
+  h3 {
+    @apply text-2xl;
+  }
+  h4 {
+    @apply text-xl;
+  }
+  p, h1, h2, h3, h4, h5, h6 {
+    @apply break-words;
+  }
+  p {
+    @apply text-pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-balance;
   }
 }

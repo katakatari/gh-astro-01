@@ -1,27 +1,36 @@
 ---
-import { ModeToggle } from "../ui/mode-toggle";
+import { ModeToggle } from "@components/ui/mode-toggle";
 import { getBaseUrl } from "@lib/utils";
+import MobileNavigation from "./components/header-mobile-navigation";
 const url = getBaseUrl();
+const navigations = [
+  { href: "gallery", title: "Gallery" },
+  { href: "blog", title: "Blog" },
+  { href: "code-journey", title: "Code" },
+  { href: "contact", title: "Contact" },
+];
 ---
 
 <header
   class="sticky top-4 z-50 mx-auto flex max-w-fit items-center justify-between rounded-full bg-background p-4 shadow-sm shadow-foreground md:fixed md:right-4 md:ml-auto"
 >
   <nav>
-    <ul class="flex items-center gap-4">
+    <ul class="flex items-center gap-4 font-bold">
       <li>
-        <a href=`${url}/` class="text-gradient text-2xl font-bold">Katakatari</a
-        >
+        <a href=`${url}/` class="text-gradient text-2xl">Katakatari</a>
       </li>
-      <li>
-        <a href=`${url}/`>Gallery</a>
-      </li>
-      <li>
-        <a href=`${url}/`>Blog</a>
-      </li>
-      <li>
-        <a href=`${url}/`>Code</a>
-      </li>
+      {
+        navigations.map(({ href, title }) => (
+          <li class="hidden md:block">
+            <a href={`${url}/${href}`}>{title}</a>
+          </li>
+        ))
+      }
+      <MobileNavigation
+        client:load
+        className="block md:hidden"
+        navigations={navigations}
+      />
       <ModeToggle client:load />
     </ul>
   </nav>

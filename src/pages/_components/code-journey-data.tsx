@@ -1,6 +1,6 @@
 import Timeline from "@components/with-motion/timeline";
 import FocusCard from "@components/with-motion/focus-card";
-import Icon from "../ui/icon";
+import Icon from "@components/ui/icon";
 
 const techStacks = ["github", "astro", "react", "tailwind"] as const;
 

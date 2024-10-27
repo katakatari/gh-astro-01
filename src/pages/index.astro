@@ -1,10 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import TimelineDemo from "../components/react/timeline-demo";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <TimelineDemo client:load />
+  <main
+    class="container flex min-h-[calc(100dvh_-_68px)] items-center justify-center"
+  >
+    <section>
+      <header class="mx-auto max-w-4xl space-y-3 text-center">
+        <h1 class="text-gradient font-bold capitalize">Katakatari</h1>
+        <p class="text-pretty">
+          Derived from the Indonesian word "kata-kata" (words) and the Japanese
+          word "語る" (to talk). A space where you can explore and engage with
+          content that spans across various interests.
+        </p>
+      </header>
+    </section>
   </main>
 </Layout>

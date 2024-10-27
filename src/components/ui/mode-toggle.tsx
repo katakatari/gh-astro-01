@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LuMonitor, LuMoon, LuSun } from "react-icons/lu";
+import Icon from "./icon";
 
 type Theme = "theme-light" | "dark" | "system";
 const themes = ["theme-light", "dark", "system"] as const;
@@ -42,13 +42,19 @@ export function ModeToggle() {
           className="rounded-full aspect-square"
         >
           {theme === "theme-light" && (
-            <LuSun className="h-[1.2rem] w-[1.2rem] transition-all" />
+            <Icon name="sun" className="h-[1.2rem] w-[1.2rem] transition-all" />
           )}
           {theme === "dark" && (
-            <LuMoon className="h-[1.2rem] w-[1.2rem] transition-all" />
+            <Icon
+              name="moon"
+              className="h-[1.2rem] w-[1.2rem] transition-all"
+            />
           )}
           {theme === "system" && (
-            <LuMonitor className="h-[1.2rem] w-[1.2rem] transition-all" />
+            <Icon
+              name="monitor"
+              className="h-[1.2rem] w-[1.2rem] transition-all"
+            />
           )}
           <span className="sr-only">Toggle theme</span>
         </Button>

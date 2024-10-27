@@ -1,0 +1,48 @@
+---
+import Layout from "@layouts/Layout.astro";
+interface Post {
+  url: string;
+  frontmatter: {
+    title: string;
+    pub_date: Date;
+    description: string;
+    author: string;
+    image: {
+      url: string;
+      alt: string;
+    };
+    tags: string[];
+  };
+}
+
+const allPosts = Object.values(
+  await import.meta.glob("./posts/*.mdx", { eager: true }),
+) as Post[];
+---
+
+<Layout title="blog">
+  <main
+    class="container min-h-dvh max-w-5xl content-center space-y-4 md:text-center"
+  >
+    <h1>Blog Post</h1>
+    <ul class="grid gap-4 md:grid-cols-3">
+      {
+        allPosts.map((post) => (
+          <li class="group relative overflow-clip rounded-md">
+            <a href={post?.url}>
+              <p class="absolute bottom-4 left-4 md:hidden md:group-hover:block">
+                {post?.frontmatter?.title}
+              </p>
+              <img
+                src={post?.frontmatter?.image?.url}
+                alt={post?.frontmatter?.title}
+                class="aspect-video"
+                width="300"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>

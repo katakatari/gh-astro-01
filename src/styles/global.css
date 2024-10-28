@@ -41,7 +41,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
-    --accent-main: 266.59 80.73% 57.25%;
+    /* --accent-main: 266.59 80.73% 57.25%;
     --accent-light: 266.09 82.14% 89.02%;
     --accent-dark: 265.71 81.98% 21.76%;
     --accent-gradient: linear-gradient(
@@ -49,7 +49,21 @@
       hsl(var(--accent)),
       hsl(var(--accent-dark)) 30%,
       black 60%
+    ); */
+
+    --accent-main: 266.59 80.73% 57.25%;
+    --accent-light: 160 100% 75%;
+    --accent-dark: 265.71 81.98% 21.76%;
+    --accent-gradient: linear-gradient(
+      45deg,
+      hsl(var(--primary)),
+      hsl(var(--accent-light)) 30%,
+      white 60%
     );
+
+    --header-height: 68px;
+    --footer-height: 400px;
+    --main-height: calc(80dvh - var(--header-height));
   }
 
   .dark {

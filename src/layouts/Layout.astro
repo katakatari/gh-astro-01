@@ -5,6 +5,7 @@ interface Props {
 
 const { title } = Astro.props;
 
+import Footer from "@components/global/footer.astro";
 import Header from "@components/global/header.astro";
 import { getBaseUrl } from "@lib/utils";
 import "@styles/global.css";
@@ -47,5 +48,6 @@ const url = getBaseUrl();
   <body>
     <Header />
     <slot />
+    <Footer />
   </body>
 </html>

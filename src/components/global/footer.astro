@@ -1,0 +1,29 @@
+---
+import Icon from "@components/ui/icon";
+
+const contacts = ["github", "discord", "email"] as const;
+const contents = ["gallery", "blog", "code"] as const;
+---
+
+<footer
+  class="flex flex-col gap-20 border-primary/80 py-16 font-semibold shadow shadow-foreground"
+>
+  <div class="container flex items-center justify-between">
+    <ul class="flex flex-col gap-2">
+      {contents.map((item) => <li class="capitalize">{item}</li>)}
+    </ul>
+    <ul class="flex gap-6">
+      {
+        contacts.map((item) => (
+          <li class="flex flex-col items-center gap-2 capitalize">
+            <span>{item}</span>
+            <a href="" class="hover:text-primary/80">
+              <Icon name={item} className="aspect-square size-8" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <p class="text-center text-xl font-medium">© 2024 - Katakatari</p>
+</footer>

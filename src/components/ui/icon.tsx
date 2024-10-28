@@ -1,21 +1,44 @@
-import { SiAstro, SiGithub, SiReact, SiTailwindcss } from "react-icons/si";
+import {
+  SiAstro,
+  SiCss3,
+  SiDiscord,
+  SiGithub,
+  SiHtml5,
+  SiJavascript,
+  SiMongodb,
+  SiNextdotjs,
+  SiReact,
+  SiTailwindcss,
+  SiTrpc,
+  SiTypescript,
+} from "react-icons/si";
 import type { IconBaseProps } from "react-icons/lib";
 import { LuCode2, LuMonitor, LuMoon, LuSun } from "react-icons/lu";
 import { RxChevronDown } from "react-icons/rx";
+import { MdOutlineAlternateEmail } from "react-icons/md";
 
 const Icons = {
   github: SiGithub,
   astro: SiAstro,
   react: SiReact,
+  discord: SiDiscord,
   tailwind: SiTailwindcss,
+  typescript: SiTypescript,
+  javascript: SiJavascript,
+  html: SiHtml5,
+  css: SiCss3,
+  mongo: SiMongodb,
+  trpc: SiTrpc,
+  next: SiNextdotjs,
   code: LuCode2,
   sun: LuSun,
   moon: LuMoon,
   monitor: LuMonitor,
-  "chevron-down": RxChevronDown
+  email: MdOutlineAlternateEmail,
+  "chevron-down": RxChevronDown,
 } as const;
 
-type IconName = keyof typeof Icons;
+export type IconName = keyof typeof Icons;
 interface IconProps extends IconBaseProps {
   name: IconName;
 }
@@ -26,4 +49,4 @@ const Icon = ({ name, ...props }: IconProps) => {
   return <Icon className="size-6" {...props} />;
 };
 
-export default Icon
+export default Icon;

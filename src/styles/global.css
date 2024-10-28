@@ -41,29 +41,14 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
 
-    /* --accent-main: 266.59 80.73% 57.25%;
-    --accent-light: 266.09 82.14% 89.02%;
-    --accent-dark: 265.71 81.98% 21.76%;
-    --accent-gradient: linear-gradient(
-      45deg,
-      hsl(var(--accent)),
-      hsl(var(--accent-dark)) 30%,
-      black 60%
-    ); */
-
-    --accent-main: 266.59 80.73% 57.25%;
-    --accent-light: 160 100% 75%;
-    --accent-dark: 265.71 81.98% 21.76%;
-    --accent-gradient: linear-gradient(
-      45deg,
-      hsl(var(--primary)),
-      hsl(var(--accent-light)) 30%,
-      white 60%
-    );
-
     --header-height: 68px;
     --footer-height: 400px;
-    --main-height: calc(80dvh - var(--header-height));
+    --main-height: calc(85dvh - var(--header-height) * 2);
+
+    .custom-gradient {
+      @apply bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text
+        text-transparent;
+    }
   }
 
   .dark {
@@ -94,15 +79,10 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
 
-    --accent-main: 266.59 80.73% 57.25%;
-    --accent-light: 160 100% 75%;
-    --accent-dark: 265.71 81.98% 21.76%;
-    --accent-gradient: linear-gradient(
-      45deg,
-      hsl(var(--primary)),
-      hsl(var(--accent-light)) 30%,
-      white 60%
-    );
+    .custom-gradient {
+      @apply bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text
+        text-transparent;
+    }
   }
 }
 
@@ -116,14 +96,6 @@ code {
     Bitstream Vera Sans Mono,
     Courier New,
     monospace;
-}
-
-.text-gradient {
-  background-image: var(--accent-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 300%;
-  background-position: 0%;
 }
 
 @layer base {

@@ -1,24 +1,43 @@
 ---
-import Icon from "@components/ui/icon";
+import Icon, { type IconName } from "@components/ui/icon";
 
-const contacts = ["github", "discord", "email"] as const;
+const contacts = [
+  {
+    href: "https://github.com/BayuPrasetyaUtomo",
+    label: "github",
+  },
+  {
+    href: "https://discordapp.com/users/774211836123021323",
+    label: "discord",
+  },
+  {
+    href: "https://www.linkedin.com/in/bayu-utomo-b129bb235/",
+    label: "linkedIn",
+  },
+  {
+    href: "bayu.prasetya.utomo@gmail.com",
+    label: "email",
+  },
+] as const;
 const contents = ["gallery", "blog", "code"] as const;
 ---
 
 <footer
   class="flex flex-col gap-20 border-primary/80 py-16 font-semibold shadow shadow-foreground"
 >
-  <div class="container flex items-center justify-between">
-    <ul class="flex flex-col gap-2">
+  <div
+    class="container flex flex-col items-center justify-between gap-8 md:flex-row"
+  >
+    <ul class="flex flex-row gap-2 md:flex-col">
       {contents.map((item) => <li class="capitalize">{item}</li>)}
     </ul>
     <ul class="flex gap-6">
       {
-        contacts.map((item) => (
-          <li class="flex flex-col items-center gap-2 capitalize">
-            <span>{item}</span>
-            <a href="" class="hover:text-primary/80">
-              <Icon name={item} className="aspect-square size-8" />
+        contacts.map(({ label, href }) => (
+          <li class="flex flex-col items-center gap-2 text-sm capitalize">
+            <span>{label}</span>
+            <a href={href} class="hover:text-primary/80">
+              <Icon name={label.toLowerCase() as IconName} />
             </a>
           </li>
         ))

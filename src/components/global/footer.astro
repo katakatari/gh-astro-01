@@ -36,9 +36,24 @@ const contents = ["gallery", "blog", "code"] as const;
         contacts.map(({ label, href }) => (
           <li class="flex flex-col items-center gap-2 text-sm capitalize">
             <span>{label}</span>
-            <a href={href} class="hover:text-primary/80">
-              <Icon name={label.toLowerCase() as IconName} />
-            </a>
+            {label === "email" ? (
+              <abbr title="click to copy">
+                <Icon
+                  id="email"
+                  name={label.toLowerCase() as IconName}
+                  className="hover:text-primary/80 size-6 cursor-pointer"
+                />
+              </abbr>
+            ) : (
+              <a
+                href={href}
+                class="hover:text-primary/80"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <Icon name={label.toLowerCase() as IconName} />
+              </a>
+            )}
           </li>
         ))
       }
@@ -46,3 +61,10 @@ const contents = ["gallery", "blog", "code"] as const;
   </div>
   <p class="text-center text-xl font-medium">© 2024 - Katakatari</p>
 </footer>
+
+<script>
+  const email = document.querySelector("#email");
+  email?.addEventListener("click", () =>
+    navigator.clipboard.writeText("bayu.prasetya.utomo@gmail.com"),
+  );
+</script>

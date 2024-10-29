@@ -32,16 +32,46 @@ const stacks = [
 ] as const;
 
 const allStacks = [
-  "HTML",
-  "CSS",
-  "Tailwind CSS",
-  "Typescript",
-  "Javascript",
-  "React",
-  "Next JS",
-  "Astro",
-  "tRPC",
-  "Mongo DB",
+  {
+    href: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    label: "HTML",
+  },
+  {
+    href: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    label: "CSS",
+  },
+  {
+    href: "https://tailwindcss.com/",
+    label: "Tailwind CSS",
+  },
+  {
+    href: "https://www.typescriptlang.org/",
+    label: "Typescript",
+  },
+  {
+    href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    label: "Javascript",
+  },
+  {
+    href: "https://react.dev/",
+    label: "React",
+  },
+  {
+    href: "https://nextjs.org/",
+    label: "Next JS",
+  },
+  {
+    href: "https://astro.build/",
+    label: "Astro",
+  },
+  {
+    href: "https://trpc.io/",
+    label: "tRPC",
+  },
+  {
+    href: "https://www.mongodb.com/",
+    label: "Mongo DB",
+  },
 ] as const;
 ---
 
@@ -80,15 +110,27 @@ const allStacks = [
 
     <section class="flex min-h-main items-center">
       <div class="container grid items-center gap-6 md:grid-cols-2">
-        <header class="flex max-w-xl flex-col justify-center gap-4">
-          <h2>Website contents</h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi
-            officiis et, facilis voluptate molestiae debitis atque obcaecati
-            repellat quia repellendus magnam optio vitae tempore fugit sed
-            excepturi natus quam laudantium!
-          </p>
-          <ul class="grid grid-flow-col gap-4 md:flex">
+        <header
+          class="prose flex max-w-xl flex-col justify-center dark:prose-invert"
+        >
+          <h2 class="text-center md:text-start">Website contents</h2>
+          <ul>
+            <li>
+              Gallery of Pictures: Explore a gallery showcasing my favorite
+              photographs from various travels and moments.
+            </li>
+            <li>
+              Blog: Dive into my blog where I share insights and stories on a
+              variety of topics.
+            </li>
+            <li>
+              Code: Follow my journey as a programmer, including tutorials,
+              projects, and personal growth in the tech world.
+            </li>
+          </ul>
+          <ul
+            class="grid list-none grid-flow-col items-center justify-start gap-4 p-0 md:flex"
+          >
             {
               contents.map((item) => (
                 <li class="cursor-pointer rounded-lg bg-primary/70 px-6 py-2 capitalize text-primary-foreground hover:opacity-80 dark:text-foreground">
@@ -98,67 +140,85 @@ const allStacks = [
             }
           </ul>
         </header>
-        <div class="w-2xl aspect-video h-auto rounded-lg bg-primary/80"></div>
-      </div>
-    </section>
-
-    <section
-      class="container grid min-h-main items-center justify-center gap-10 py-10 md:grid-cols-3"
-    >
-      <div class="prose space-y-8 dark:prose-invert md:col-span-2">
-        <header class="space-y-4">
-          <h2 class="text-center md:text-start">About developer</h2>
-          <p class="max-w-xl">
-            Hi, my name is <span class="custom-gradient font-bold"
-              >Bayu Utomo</span
-            >&excl;<br />A generalist that always eager to learn something new.
-            I started my programming journey on October 2023. Got my first job
-            as a full stack developer to build a custom CMS for <LinkPreview
-              href="https://lpksgm.com"
-              className="no-underline hover:text-primary hover:underline"
-              client:load>LPK SGM</LinkPreview
-            > a training organization on August 2024. Currently active developing
-            this website as a platform to hone my skill and hopefully be able to
-            share useful info about my journey along the way.
-          </p>
-        </header>
-        <div class="space-y-3">
-          <p>Life before programming journey:</p>
-          <ul>
-            <li>Teller in a private Bank in Indonesia</li>
-            <li>Factory worker in a Japanese Company in Japan</li>
-          </ul>
+        <div
+          class="w-2xl group relative aspect-video h-auto overflow-clip rounded-lg bg-primary/80"
+        >
+          <div
+            class="absolute flex h-full w-full items-center justify-center bg-black/50 text-lg font-medium opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+          >
+            Asakusa, Japan
+          </div>
+          <img
+            id="content-banner"
+            src="https://ik.imagekit.io/ah0ec7izw/Japan/20230101_102944.JPG?updatedAt=1729927307990"
+            alt="Asakusa"
+            class="aspect-video object-cover"
+          />
         </div>
       </div>
-      <img
-        src="https://avatars.githubusercontent.com/u/108232231?s=400&u=39cbeba17d5ef91561b744ea8ec034e3edb7a085&v=4"
-        alt="Bayu Utomo"
-        class="mx-auto aspect-square w-60 rounded-full border-4 border-primary md:w-80"
-        width="360"
-      />
-    </section>
-
-    <section
-      class="container flex min-h-main flex-col items-center justify-center gap-6 py-10"
-    >
-      <header class="text-center md:text-start">
-        <h3>Current Stack</h3>
-      </header>
-      <ul class="grid grid-cols-2 gap-6 md:grid-cols-5">
-        {
-          allStacks.map((item) => (
-            <li class="flex aspect-video max-w-48 flex-col items-center justify-center gap-2 rounded-lg p-6 text-center text-lg font-medium shadow-md hover:bg-primary/50 hover:font-bold dark:shadow-foreground">
-              <span>{item}</span>
-              <a href="#">
-                <Icon
-                  name={item.split(" ")[0]?.toLowerCase() as IconName}
-                  className="size-8"
-                />
-              </a>
-            </li>
-          ))
-        }
-      </ul>
     </section>
   </main>
+
+  <section
+    class="container grid min-h-main items-center justify-center gap-10 py-10 md:grid-cols-3"
+  >
+    <div class="prose space-y-8 dark:prose-invert md:col-span-2">
+      <header class="space-y-4">
+        <h2 class="text-center md:text-start">About developer</h2>
+        <p class="max-w-xl">
+          Hi, my name is <span class="custom-gradient font-bold"
+            >Bayu Utomo</span
+          >&excl;<br />I started my programming journey on October 2023. Got my
+          first job as a full stack developer to build a custom CMS for <LinkPreview
+            href="https://lpksgm.com"
+            className="no-underline hover:text-primary hover:underline"
+            client:load>LPK SGM</LinkPreview
+          > a training organization on August 2024. Currently active developing this
+          website as a platform to hone my skill and hopefully be able to share useful
+          info about my journey along the way.
+        </p>
+      </header>
+      <div class="space-y-3">
+        <p>Life before programming journey:</p>
+        <ul>
+          <li>Teller in a private Bank in Indonesia</li>
+          <li>Factory worker in a Japanese Company in Japan</li>
+        </ul>
+      </div>
+    </div>
+    <img
+      src="https://avatars.githubusercontent.com/u/108232231?s=400&u=39cbeba17d5ef91561b744ea8ec034e3edb7a085&v=4"
+      alt="Bayu Utomo"
+      class="mx-auto aspect-square w-60 rounded-full border-4 border-primary md:w-80"
+      width="360"
+    />
+  </section>
+
+  <section
+    class="container flex min-h-main flex-col items-center justify-center gap-6 py-10"
+  >
+    <header class="text-center md:text-start">
+      <h3>Current Stack</h3>
+    </header>
+    <ul class="grid grid-cols-2 gap-6 md:grid-cols-5">
+      {
+        allStacks.map(({ href, label }) => (
+          <li class="flex aspect-video max-w-48 flex-col items-center justify-center gap-2 rounded-lg p-6 text-center text-lg font-medium shadow-md hover:bg-primary/50 hover:font-bold dark:shadow-foreground">
+            <span>{label}</span>
+            <a href={href}>
+              <Icon
+                name={label.split(" ")[0]?.toLowerCase() as IconName}
+                className="size-8"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Layout>
+
+<script>
+  const banner = document.querySelector("#content-banner");
+  banner?.addEventListener("contextmenu", (e) => e.preventDefault());
+</script>

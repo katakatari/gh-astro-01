@@ -47,7 +47,7 @@ const { href } = Astro.url;
   </main>
 </Layout>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js">
+<script is:inline>
   const params = new URLSearchParams(window.location.search);
   if (params.get("r") === "success") {
     Toastify({
@@ -58,9 +58,11 @@ const { href } = Astro.url;
       gravity: "bottom", // `top` or `bottom`
       position: "right", // `left`, `center` or `right`
       stopOnFocus: true, // Prevents dismissing of toast on hover
+      className: "custom-toast",
       style: {
         borderRadius: "6px",
         background: "hsl(var(--primary))",
+        maxWidth: "none",
       },
       onClick: function () {}, // Callback after click
     }).showToast();

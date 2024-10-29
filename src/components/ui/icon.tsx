@@ -15,7 +15,7 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import type { IconBaseProps } from "react-icons/lib";
-import { LuCode2, LuMonitor, LuMoon, LuSun } from "react-icons/lu";
+import { LuCode2, LuCross, LuMonitor, LuMoon, LuSun } from "react-icons/lu";
 import { RxChevronDown } from "react-icons/rx";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 
@@ -38,6 +38,7 @@ const Icons = {
   sun: LuSun,
   moon: LuMoon,
   monitor: LuMonitor,
+  cross: LuCross,
   email: MdOutlineAlternateEmail,
   "chevron-down": RxChevronDown,
 } as const;

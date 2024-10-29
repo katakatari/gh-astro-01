@@ -1,0 +1,68 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Input from "@components/ui/input";
+import Label from "@components/ui/label";
+import Textarea from "@components/ui/textarea";
+import { Button } from "@components/ui/button";
+const { href } = Astro.url;
+---
+
+<Layout title="Katakatari | Contact">
+  <main class="min-h-main content-center py-10">
+    <form action="https://api.staticforms.xyz/submit" method="post">
+      <fieldset class="container max-w-xl space-y-3 rounded-lg border-2 py-10">
+        <header>
+          <h2>Contact form</h2>
+        </header>
+        <div class="space-y-2">
+          <Label>Name</Label>
+          <Input type="text" name="name" placeholder="Your Name" />
+        </div>
+        <div class="space-y-2">
+          <Label>Email</Label>
+          <Input type="text" name="email" placeholder="Your Email" />
+        </div>
+        <div class="space-y-2">
+          <Label>Message</Label>
+          <Textarea name="message" placeholder="Your Message or Comment" />
+        </div>
+        <Input type="text" name="honeypot" className="hidden" />
+        <Input
+          type="hidden"
+          name="accessKey"
+          value="5c95a7c5-e679-496e-b922-2d03f0c7ff89"
+        />
+        <Input
+          type="hidden"
+          name="subject"
+          value={`Contact us from - ${href}`}
+        />
+        <Input type="hidden" name="replyTo" value="@" />
+        <Input type="hidden" name="redirectTo" value={`${href}?r=success`} />
+        <Button type="submit" className="w-full font-semibold text-neutral-50">
+          Submit</Button
+        >
+      </fieldset>
+    </form>
+  </main>
+</Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("r") === "success") {
+    Toastify({
+      text: "Thank you for filling the contact form!",
+      duration: 5000,
+      newWindow: true,
+      close: true,
+      gravity: "bottom", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        borderRadius: "6px",
+        background: "hsl(var(--primary))",
+      },
+      onClick: function () {}, // Callback after click
+    }).showToast();
+  }
+</script>

@@ -47,7 +47,11 @@ const { href } = Astro.url;
   </main>
 </Layout>
 
-<script>
+<script
+  is:inline
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/toastify-js"
+>
   const params = new URLSearchParams(window.location.search);
   if (params.get("r") === "success") {
     Toastify({

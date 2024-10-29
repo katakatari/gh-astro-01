@@ -203,7 +203,7 @@ const allStacks = [
     <ul class="grid grid-cols-2 gap-6 md:grid-cols-5">
       {
         allStacks.map(({ href, label }) => (
-          <li class="flex aspect-video max-w-48 flex-col items-center justify-center gap-2 rounded-lg p-6 text-center text-lg font-medium shadow-md hover:bg-primary/50 hover:font-bold dark:shadow-foreground">
+          <li class="flex aspect-video max-w-48 flex-col items-center justify-center gap-2 rounded-lg p-6 text-center text-sm font-medium shadow-md hover:bg-primary/50 hover:font-bold dark:shadow-foreground md:text-lg">
             <span>{label}</span>
             <a href={href}>
               <Icon

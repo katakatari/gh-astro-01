@@ -2,13 +2,8 @@
 import { ModeToggle } from "@components/ui/mode-toggle";
 import { getBaseUrl } from "@lib/utils";
 import MobileNavigation from "./components/header-mobile-navigation";
+import { NAVIGATIONS } from "@constants";
 const url = getBaseUrl();
-const navigations = [
-  { href: "gallery", title: "Gallery" },
-  { href: "blog", title: "Blog" },
-  { href: "code-journey", title: "Code" },
-  { href: "contact", title: "Contact" },
-];
 ---
 
 <header
@@ -20,17 +15,13 @@ const navigations = [
         <a href=`${url}/` class="custom-gradient text-2xl">Katakatari</a>
       </li>
       {
-        navigations.map(({ href, title }) => (
+        NAVIGATIONS.map(({ href, label }) => (
           <li class="hidden md:block">
-            <a href={`${url}/${href}`}>{title}</a>
+            <a href={`${url}/${href}`}>{label}</a>
           </li>
         ))
       }
-      <MobileNavigation
-        client:load
-        className="block md:hidden"
-        navigations={navigations}
-      />
+      <MobileNavigation client:load className="block md:hidden" />
       <ModeToggle client:load />
     </ul>
   </nav>

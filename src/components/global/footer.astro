@@ -1,6 +1,8 @@
 ---
 import Icon, { type IconName } from "@components/ui/icon";
-
+import { getBaseUrl } from "@lib/utils";
+import { NAVIGATIONS } from "@constants";
+const url = getBaseUrl();
 const contacts = [
   {
     href: "https://github.com/BayuPrasetyaUtomo",
@@ -19,7 +21,6 @@ const contacts = [
     label: "email",
   },
 ] as const;
-const contents = ["gallery", "blog", "code"] as const;
 ---
 
 <footer
@@ -29,7 +30,13 @@ const contents = ["gallery", "blog", "code"] as const;
     class="container flex flex-col items-center justify-between gap-8 md:flex-row"
   >
     <ul class="flex flex-row gap-2 md:flex-col">
-      {contents.map((item) => <li class="capitalize">{item}</li>)}
+      {
+        NAVIGATIONS.map(({ href, label }) => (
+          <li class="capitalize">
+            <a href={`${url}/${href}`}>{label}</a>
+          </li>
+        ))
+      }
     </ul>
     <ul class="flex gap-6">
       {

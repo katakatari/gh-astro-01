@@ -6,16 +6,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn, getBaseUrl } from "@lib/utils";
 import { Button } from "@components/ui/button";
+import { NAVIGATIONS } from "@constants";
 const url = getBaseUrl();
-
 interface Props {
   className?: string;
-  navigations: {
-    href: string;
-    title: string;
-  }[];
 }
-const MobileNavigation = ({ className, navigations }: Props) => {
+const MobileNavigation = ({ className }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className={cn("", className)}>
@@ -25,11 +21,11 @@ const MobileNavigation = ({ className, navigations }: Props) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center">
-        {navigations.map(({ href, title }) => (
+        {NAVIGATIONS.map(({ href, label }) => (
           <DropdownMenuItem
             key={href}
           >
-            <a href={`${url}/${href}`}>{title}</a>
+            <a href={`${url}/${href}`}>{label}</a>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

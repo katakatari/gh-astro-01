@@ -10,6 +10,7 @@ interface Post {
     image: {
       url: string;
       alt: string;
+      credits?: string;
     };
     tags: string[];
   };
@@ -22,15 +23,15 @@ const allPosts = Object.values(
 
 <Layout title="Katakatari | Blog">
   <main
-    class="container min-h-dvh max-w-5xl content-center space-y-4 md:text-center"
+    class="container flex min-h-dvh max-w-5xl flex-col items-center justify-center gap-10 space-y-4 py-10 md:text-center"
   >
-    <h1>Blog Post</h1>
+    <header><h1>Blog Post</h1></header>
     <ul class="grid gap-4 md:grid-cols-3">
       {
         allPosts.map((post) => (
           <li class="group relative overflow-clip rounded-md">
             <a href={post?.url}>
-              <p class="absolute bottom-4 left-4 md:hidden md:group-hover:block">
+              <p class="absolute bottom-0 p-4 md:hidden md:group-hover:block">
                 {post?.frontmatter?.title}
               </p>
               <img

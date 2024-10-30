@@ -1,4 +1,5 @@
 ---
+import { map } from "astro:schema";
 import Layout from "./Layout.astro";
 interface Props {
   frontmatter: {
@@ -15,6 +16,23 @@ interface Props {
     tags: string[];
   };
 }
+
+interface Post {
+  url: string;
+  frontmatter: {
+    title: string;
+    created_at: Date;
+    description: string;
+    author: string;
+    image: {
+      url: string;
+      alt: string;
+      credits?: string;
+    };
+    tags: string[];
+  };
+}
+
 const { frontmatter } = Astro.props;
 const { title, created_at, description, author, image, updated_at, tags } =
   frontmatter;
@@ -26,48 +44,54 @@ const convertDate = (date: Date) =>
     month: "long",
     day: "numeric",
   });
+
+const allPosts = Object.values(
+  await import.meta.glob("../pages/posts/*.mdx", { eager: true }),
+) as Post[];
 ---
 
 <Layout title={`Katakatari | ${title}`}>
   <main
-    class="prose-code:bg-code/10 dark:prose-code:bg-code/20 container prose max-w-4xl py-32 dark:prose-invert prose-code:p-1 prose-code:font-medium prose-code:text-primary prose-code:before:content-none prose-code:after:content-none"
+    class="prose-code:bg-code/10 dark:prose-code:bg-code/20 container prose max-w-4xl py-10 dark:prose-invert prose-code:p-1 prose-code:font-medium prose-code:text-primary prose-code:before:content-none prose-code:after:content-none md:py-32"
   >
-    <h1>{title}</h1>
-    <div class="flex flex-col justify-between gap-2 md:w-full md:flex-row">
-      <p class="m-0">
-        Posted at: {convertDate(created_at)}
-      </p>
-      {updated_at && <p class="m-0">Updated at: {convertDate(updated_at)}</p>}
-    </div>
-    {
-      description && (
-        <p>
-          <em>{description}</em>
+    <header>
+      <h1>{title}</h1>
+      <div class="flex flex-col justify-between gap-2 md:w-full md:flex-row">
+        <p class="m-0">
+          Posted at: {convertDate(created_at)}
         </p>
-      )
-    }
-    <p>Author: <span class="font-bold">{author}</span></p>
-    <span class="relative aspect-video" id="banner">
+        {updated_at && <p class="m-0">Updated at: {convertDate(updated_at)}</p>}
+      </div>
       {
-        image.credits && (
-          <div class="absolute h-full w-full content-end bg-black/50 p-4 font-medium transition-all duration-300 ease-in-out hover:bg-black/80">
-            <a
-              href={image.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-neutral-50 no-underline hover:text-primary hover:underline"
-            >
-              {image.credits}
-            </a>
-          </div>
+        description && (
+          <p>
+            <em>{description}</em>
+          </p>
         )
       }
-      <img
-        src={image.url}
-        class="aspect-video w-full object-cover"
-        alt={image.alt}
-      />
-    </span>
+      <p>Author: <span class="font-bold">{author}</span></p>
+      <span class="relative aspect-video" id="banner">
+        {
+          image.credits && (
+            <div class="absolute h-full w-full content-end bg-black/50 p-4 font-medium transition-all duration-300 ease-in-out hover:bg-black/80">
+              <a
+                href={image.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-neutral-50 no-underline hover:text-primary hover:underline"
+              >
+                {image.credits}
+              </a>
+            </div>
+          )
+        }
+        <img
+          src={image.url}
+          class="aspect-video w-full object-cover"
+          alt={image.alt}
+        />
+      </span>
+    </header>
     <slot />
     <span>
       Tags:
@@ -79,6 +103,28 @@ const convertDate = (date: Date) =>
         }
       </ul>
     </span>
+    <footer>
+      <h4>Other blog posts:</h4>
+      <ul class="not-prose grid list-none gap-4 prose-li:p-0 md:grid-cols-3">
+        {
+          allPosts.slice(0, 3).map((post) => (
+            <li class="group prose dark:prose-invert">
+              <a href={post?.url} class="relative overflow-clip rounded-md">
+                <p class="absolute bottom-0 p-2 md:hidden md:group-hover:block">
+                  {post?.frontmatter?.title}
+                </p>
+                <img
+                  src={post?.frontmatter?.image?.url}
+                  alt={post?.frontmatter?.title}
+                  class="aspect-video w-full"
+                  width="300"
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </footer>
   </main>
 </Layout>
 

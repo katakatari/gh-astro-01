@@ -1,24 +1,89 @@
 ---
-const { frontmatter } = Astro.props;
-const { title, pub_date, description, author, image } = frontmatter;
-
 import Layout from "./Layout.astro";
+interface Props {
+  frontmatter: {
+    title: string;
+    created_at: Date;
+    updated_at?: Date;
+    description?: string;
+    author: string;
+    image: {
+      url: string;
+      alt: string;
+      credits?: string;
+    };
+    tags: string[];
+  };
+}
+const { frontmatter } = Astro.props;
+const { title, created_at, description, author, image, updated_at, tags } =
+  frontmatter;
 
-const date = new Date(pub_date).toLocaleDateString(undefined, {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
+const convertDate = (date: Date) =>
+  new Date(date).toLocaleDateString(undefined, {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 ---
 
-<Layout title={title}>
-  <main class="container prose max-w-5xl py-32 dark:prose-invert">
+<Layout title={`Katakatari | ${title}`}>
+  <main
+    class="prose-code:bg-code/10 dark:prose-code:bg-code/20 container prose max-w-4xl py-32 dark:prose-invert prose-code:p-1 prose-code:font-medium prose-code:text-primary prose-code:before:content-none prose-code:after:content-none"
+  >
     <h1>{title}</h1>
-    <p>{date}</p>
-    <p><em>{description}</em></p>
+    <div class="flex flex-col justify-between gap-2 md:w-full md:flex-row">
+      <p class="m-0">
+        Posted at: {convertDate(created_at)}
+      </p>
+      {updated_at && <p class="m-0">Updated at: {convertDate(updated_at)}</p>}
+    </div>
+    {
+      description && (
+        <p>
+          <em>{description}</em>
+        </p>
+      )
+    }
     <p>Author: <span class="font-bold">{author}</span></p>
-    <img src={image.url} class="aspect-video max-w-full" alt={image.alt} />
+    <span class="relative aspect-video" id="banner">
+      {
+        image.credits && (
+          <div class="absolute h-full w-full content-end bg-black/50 p-4 font-medium transition-all duration-300 ease-in-out hover:bg-black/80">
+            <a
+              href={image.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-neutral-50 no-underline hover:text-primary hover:underline"
+            >
+              {image.credits}
+            </a>
+          </div>
+        )
+      }
+      <img
+        src={image.url}
+        class="aspect-video w-full object-cover"
+        alt={image.alt}
+      />
+    </span>
     <slot />
+    <span>
+      Tags:
+      <ul class="inline-flex list-none gap-3">
+        {
+          tags.map((tag) => (
+            <li class="border border-primary px-2 capitalize">{tag}</li>
+          ))
+        }
+      </ul>
+    </span>
   </main>
 </Layout>
+
+<script>
+  const banner = document.querySelector("#banner");
+
+  banner?.addEventListener("contextmenu", (e) => e.preventDefault());
+</script>

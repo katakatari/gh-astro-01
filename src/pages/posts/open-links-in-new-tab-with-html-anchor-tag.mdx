@@ -1,0 +1,28 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "Open Links in New Tab with HTML Anchor Tag"
+created_at: 2024-10-30
+description: "Learn how to open links in a new tab using the HTML anchor tag. Enhance user experience and improve navigation on your website."
+author: "Bayu Utomo"
+image:
+  url: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600"
+  alt: "The Astro logo on a dark background with a pink glow."
+  credits: Picture by Pexels
+tags: ["HTML", "blog"]
+---
+
+## Goal
+
+1. **Adding "open in a new tab" functionality to the anchor `<a>` tag**
+
+When creating a website, you might need to redirect visitors to another page on your site or to an entirely different website. By default, the anchor `<a>` tag opens the link in the current page. But what if you want to change this behavior to open the link in a new tab instead?
+
+Fortunately, it's as simple as adding the HTML attribute `target="_blank"` to the anchor `<a>` tag.
+
+Example: `<a href="#" target="_blank">Link</a>` results in <a href="#" target="_blank">Link</a>.
+
+When you click the link above, the browser will open a new tab and redirect you to the URL provided in the `href` attribute. Simple, isn't it?
+
+Additionally, you might want to add the `rel="noopener noreferrer"` attribute to enhance security and privacy. This prevents the new page from accessing the `window.opener` property and stops the browser from sending the `Referer` header.
+
+Final code: `<a href="#" target="_blank" rel="noopener noreferrer">Target Link</a>`

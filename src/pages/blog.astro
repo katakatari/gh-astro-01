@@ -4,7 +4,7 @@ interface Post {
   url: string;
   frontmatter: {
     title: string;
-    pub_date: Date;
+    created_at: Date;
     description: string;
     author: string;
     image: {
@@ -20,7 +20,7 @@ const allPosts = Object.values(
 ) as Post[];
 ---
 
-<Layout title="blog">
+<Layout title="Katakatari | Blog">
   <main
     class="container min-h-dvh max-w-5xl content-center space-y-4 md:text-center"
   >

@@ -1,16 +1,24 @@
 ---
 const { frontmatter } = Astro.props;
+const { title, pub_date, description, author, image } = frontmatter;
 
 import Layout from "./Layout.astro";
+
+const date = new Date(pub_date).toLocaleDateString(undefined, {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
-<Layout title={frontmatter.title}>
-  <main class="container prose max-w-4xl py-32 dark:prose-invert">
-    <h1>{frontmatter.title}</h1>
-    <p>{frontmatter.pub_date.toString().slice(0, 10)}</p>
-    <p><em>{frontmatter.description}</em></p>
-    <p>Written by: {frontmatter.author}</p>
-    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
+<Layout title={title}>
+  <main class="container prose max-w-5xl py-32 dark:prose-invert">
+    <h1>{title}</h1>
+    <p>{date}</p>
+    <p><em>{description}</em></p>
+    <p>Author: <span class="font-bold">{author}</span></p>
+    <img src={image.url} class="aspect-video max-w-full" alt={image.alt} />
     <slot />
   </main>
 </Layout>

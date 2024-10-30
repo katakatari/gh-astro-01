@@ -1,0 +1,64 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "Essential Git Config"
+created_at: 2024-10-30
+description: "Some essential git config to increase productivity"
+author: "Bayu Utomo"
+image:
+  url: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600"
+  alt: "code in background"
+  credits: Picture by Pexels
+tags: ["blog", "git"]
+---
+
+## Goal
+
+- **Edit commit messages using VS Code**
+
+- **Add default push branch**
+
+{/* - **Add a default global `.gitignore`** */}
+
+As developers, Git is a tool we use daily. Most of the time, the commands we use are the same: `git add <filename>`, `git commit -m <message>`, and `git push origin <branch_name>`. While using the default commands is good enough, wouldn't it be better to shorten some commands that require additional input, like `git commit` and `git push`, to reduce the chance of making mistakes?
+
+## Write commit messages from VS Code
+
+When I first learned how to code, editing code using nano scared me. I was (and still am) unfamiliar with it. Shortcuts that are familiar to me cannot be used out-of-the-box in nano, and I didn't even know how to close the program!
+
+Fortunately, you don't have to learn nano to write long commit messages. You can use VS Code instead, so you don't have to develop new muscle memory just to write your commit messages in nano. So, how do we change the text editor when using `git commit` while omitting the `-m` for a long commit message?
+
+### Steps
+
+- **Open .gitconfig**
+
+  From your terminal, type `code ~/.gitconfig` on Mac or Linux, and `code %USERPROFILE%\.gitconfig` on Windows.
+
+- **Add config**
+
+  Add the following to the `.gitconfig` file:
+  ```
+  # Your other configuration
+  [core]
+	  editor = code --wait
+  ```
+Now, every time you use `git commit` and press `enter`, it will open a new file for you to edit the commit message in VS Code. When you're done editing, you can close the file, and the message will be committed to your codebase and ready to be pushed.
+
+## Default push to the current branch
+
+Another configuration that will increase your productivity is the ability to push your committed code to the current branch you are working on. Instead of `git push origin <branch_name>`, you can now simply use `git push`, and it will push your committed code to the current branch you are on.
+
+### Steps
+
+- **Open `.gitconfig`**
+
+- **Add config**
+
+Add the following to the `.gitconfig` file:
+
+  ```
+  # Your other configuration
+  [push]
+  	autoSetupRemote = true
+	  default = current
+  ```
+Now from your local machine, when you checkout to a new branch, work for a new feature and want to push your change to your git repository on github, you can write a simple `git push` and it will automatically create a new branch on github and push the change to that branch.

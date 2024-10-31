@@ -31,7 +31,7 @@ const allPosts = Object.values(
         allPosts.map((post) => (
           <li class="group relative overflow-clip rounded-md">
             <a href={post?.url}>
-              <p class="absolute bottom-0 p-4 md:hidden md:group-hover:block">
+              <p class="absolute flex min-h-full w-full items-end bg-black/20 p-4 text-start text-white">
                 {post?.frontmatter?.title}
               </p>
               <img

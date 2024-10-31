@@ -52,7 +52,7 @@ const allPosts = Object.values(
 
 <Layout title={`Katakatari | ${title}`}>
   <main
-    class="prose-code:bg-code/10 dark:prose-code:bg-code/20 container prose max-w-4xl py-10 dark:prose-invert prose-code:p-1 prose-code:font-medium prose-code:text-primary prose-code:before:content-none prose-code:after:content-none md:py-32"
+    class="container prose max-w-4xl py-10 dark:prose-invert prose-code:bg-code/10 prose-code:p-1 prose-code:font-medium prose-code:text-primary prose-code:before:content-none prose-code:after:content-none dark:prose-code:bg-code/20 md:py-32"
   >
     <header>
       <h1>{title}</h1>
@@ -110,7 +110,7 @@ const allPosts = Object.values(
           allPosts.slice(0, 3).map((post) => (
             <li class="group prose dark:prose-invert">
               <a href={post?.url} class="relative overflow-clip rounded-md">
-                <p class="absolute bottom-0 p-2 md:hidden md:group-hover:block">
+                <p class="absolute flex min-h-full w-full items-end rounded-sm bg-black/20 p-2 text-start text-white">
                   {post?.frontmatter?.title}
                 </p>
                 <img

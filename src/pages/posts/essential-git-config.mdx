@@ -2,6 +2,7 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: "Essential Git Config"
 created_at: 2024-10-30
+updated_at: 2024-10-31
 description: "Some essential git config to increase productivity"
 author: "Bayu Utomo"
 image:
@@ -14,10 +15,8 @@ tags: ["blog", "git"]
 ## Goal
 
 - **Edit commit messages using VS Code**
-
 - **Add default push branch**
-
-{/* - **Add a default global `.gitignore`** */}
+- **Add a default global `.gitignore`**
 
 As developers, Git is a tool we use daily. Most of the time, the commands we use are the same: `git add <filename>`, `git commit -m <message>`, and `git push origin <branch_name>`. While using the default commands is good enough, wouldn't it be better to shorten some commands that require additional input, like `git commit` and `git push`, to reduce the chance of making mistakes?
 
@@ -61,4 +60,49 @@ Add the following to the `.gitconfig` file:
   	autoSetupRemote = true
 	  default = current
   ```
-Now from your local machine, when you checkout to a new branch, work for a new feature and want to push your change to your git repository on github, you can write a simple `git push` and it will automatically create a new branch on github and push the change to that branch.
+Now, from your local machine, when you check out a new branch, work on a new feature, and want to push your changes to your Git repository on GitHub, you can simply write `git push`, and it will automatically create a new branch on GitHub and push the changes to that branch.
+
+## Global .gitignore
+
+Another useful configuration is a global `.gitignore`. It helps to make sure you don't accidentally push files that might be confidential or unimportant, like `.env` or `node_modules`. While it's best practice to always include a `.gitignore` in every project, having a global `.gitignore` serves as a safety net in case you forget to add it to a project and accidentally push sensitive information like `API_KEY` or `DATABASE_URL` for the whole world to see. Yikes!
+
+So how do you set it up?
+
+### Steps
+
+- **Create .gitignore**
+
+The filename can be `.gitignore` or anything, but it's recommended to use `.gitignore_global` to differentiate it from other `.gitignore` files.
+
+- **Include file(s) or directory(ies)**
+
+Add the file(s) or directory(ies) that you want to be ignored by default in every project.
+
+  ```
+  # Environment Variables
+  .env
+  .env.*
+
+  # Dependencies
+  node_modules/
+
+  # Your other files or directories to be ignored
+  ```
+
+- **Add the `.gitignore` to `.gitconfig`**
+
+Lastly, you will need to add `.gitignore_global` to your global `.gitconfig` by adding this line `excludesfile = /home/bayuutomo/.gitignore_global` to the `[core]` block.
+
+  ```
+  # your other config
+  [core]
+	  excludesfile = <the_location_of_your_.gitignore_global> # or /home/<username>/<.gitignore_filename> on linux and mac
+	  excludesfile = <the_location_of_your_.gitignore_global> # or  %USERPROFILE%\<.gitignore_filename> on windows
+  ```
+
+
+Now, every time you are working on a new project, this `.gitignore` will be applied by default, so you can be sure that no more `API_KEY` is being shared with the world when you forget to add it to the project's `.gitignore`. You can test this by creating the file or directory that you have included in the global `.gitignore` and running `git status` in the terminal.
+
+These are some essential `.gitconfig` settings that I use throughout my developer journey. I hope they benefit you, and I might add more when I find other useful configurations in the future.
+
+If you have any feedback, please share it by filling out the form [here](https://katakatari.github.io/gh-astro-01/contact). Thank you!

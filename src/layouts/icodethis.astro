@@ -1,0 +1,120 @@
+---
+import { cn } from "@lib/utils";
+import Layout from "./Layout.astro";
+
+interface Props {
+  challenge: {
+    title: string;
+    href: string;
+    example: string;
+  };
+  className?: {
+    main?: string;
+    header?: string;
+    example?: string;
+  };
+  responsive?: boolean;
+  submission_details?: {
+    href: string;
+    description: string;
+    challenge: string[];
+    time_to_finish: string;
+    stacks: string[];
+  };
+}
+
+const { challenge, className, responsive, submission_details } = Astro.props;
+---
+
+<Layout title=`Katakatari | ${challenge.title}`>
+  <main
+    class={cn("container min-h-main max-w-6xl md:py-32 py-10", className?.main)}
+  >
+    <!-- Header -->
+    <header class={cn("text-center space-y-3", className?.header)}>
+      <h3>
+        iCodeThis Challenge | <a
+          href={challenge.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-primary hover:underline">{challenge.title}</a
+        >
+      </h3>
+      <p class="inline-flex items-center gap-3 text-lg">
+        Responsive:
+        {
+          ["Yes", "No"].map((item, i) => (
+            <>
+              <span
+                class={cn(
+                  "border-2 px-4 py-1",
+                  responsive && i === 0
+                    ? "bg-primary/50"
+                    : !responsive && i === 1 && "bg-primary/50",
+                )}
+              >
+                {item}
+              </span>
+              {i === 0 && <span> | </span>}
+            </>
+          ))
+        }
+      </p>
+    </header>
+
+    <slot />
+
+    {
+      submission_details && (
+        <section class="prose max-w-none dark:prose-invert">
+          <header class="text-center">
+            <h3>Submission Details</h3>
+          </header>
+          <div class="border p-4">
+            <span>
+              <b>Submission:</b> <a href={submission_details.href}>Link</a>
+            </span>
+            <p>
+              <b>Description:</b>
+              <br />
+              <span class="whitespace-pre-wrap break-words">
+                {submission_details.description}
+              </span>
+            </p>
+            <div>
+              <b>Challenges:</b>
+              <ul>
+                {submission_details.challenge.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <span>
+              <b>Time to finish:</b>
+              {submission_details.time_to_finish}
+            </span>
+            <ul class="flex list-none items-center gap-4 p-0">
+              <b>Stacks:</b>
+              {submission_details.stacks.map((stack) => (
+                <li class="cursor-default border px-2 py-1 hover:bg-primary/30">
+                  {stack}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Example -->
+    <section class={cn("prose max-w-none text-center", className?.example)}>
+      <h3>Challenge Example</h3>
+      <img
+        src={challenge.example}
+        alt="challenge-example-image"
+        class="object-cover"
+        height="600"
+      />
+    </section>
+  </main>
+</Layout>

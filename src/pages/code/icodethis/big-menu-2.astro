@@ -1,0 +1,170 @@
+---
+import Icodethis from "@layouts/icodethis.astro";
+
+// https://icodethis.com/modes/design-to-code/501/submissions/226397
+// https://stackoverflow.com/questions/12813573/position-icons-into-circle
+const decoration = [
+  "vases",
+  "jars",
+  "posters",
+  "photo frames",
+  "sculptures",
+  "wall",
+  "bordur",
+  "alarm clocks",
+  "pictures",
+  "picture frames",
+];
+
+const office = [
+  "item",
+  "boxes",
+  "door stoppers",
+  "curves",
+  "weekly magazine storage",
+  "wood storage",
+  "umbrella stand",
+  "key cabinet",
+  "calendars & notebooks",
+  "pedal buckets",
+];
+const bathroom = [
+  "scented candles",
+  "candlesticks",
+  "lanterns",
+  "candlebara",
+  "kerosene & oil lamps",
+  "laundry baskets",
+  "accessories",
+  "tootbrush holders",
+  "toilet roll holders",
+  "toilet brushes",
+  "soap pumps",
+  "soap cups",
+  "laundry baskets",
+  "towel rails",
+];
+
+const items = {
+  decoration,
+  office,
+  bathroom,
+};
+
+const categories = [
+  { furniture: items },
+  { lighting: items },
+  { decor: items },
+  { serving: items },
+  { textiles: items },
+  { jewelry: items },
+  { outdoor: items },
+] as const;
+---
+
+<Icodethis
+  challenge={{
+    href: "https://icodethis.com/modes/design-to-code/540/submissions",
+    title: "Big Menu #2",
+    example: "https://icodethis.com/images/projects/big_menu_2.png",
+  }}
+  className={{
+    main: "flex flex-col gap-20",
+  }}
+  submission_details={{
+    href: "https://icodethis.com/modes/design-to-code/540",
+    description:
+      "The result shown on this page is different from the one submitted to iCodeThis. Although they look similar, this page uses search parameters to select the category and add a border at the bottom of the selected category. Meanwhile, the submitted version uses JavaScript to remember the chosen category, alter the appended child, and re-render the item.",
+    challenge: [
+      "Choosing the appropriate way to save the state",
+      "Determining whether I should make it responsive",
+    ],
+    time_to_finish: "Appr. 3 Hours",
+    stacks: ["HTML", "Tailwind CSS", "Typescript"],
+  }}
+>
+  <!-- Submission -->
+  <section class="min-h-main w-full space-y-6 border-4 py-4">
+    <header>
+      <nav>
+        <ul class="flex w-full list-none justify-evenly px-0 py-2 font-bold">
+          {
+            categories.map((item) => {
+              const category = Object.keys(item);
+
+              const displayLabel = (name: string) => {
+                switch (name) {
+                  case "serving":
+                    return "serving & tableware";
+                  case "textiles":
+                    return "textiles & carpets";
+                  case "jewelry":
+                    return "jewelry & accessories";
+                  case "outdoor":
+                    return "outdoor environment";
+                  default:
+                    return name;
+                }
+              };
+              return (
+                <li class="capitalize">
+                  <a
+                    href={`?q=${category}`}
+                    id={category[0]}
+                    class="p-2 hover:bg-primary/30"
+                  >
+                    {displayLabel(category[0])}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </nav>
+    </header>
+    <ul id="sub-category-container" class="container grid grid-flow-col"></ul>
+  </section>
+</Icodethis>
+
+<script is:inline define:vars={{ categories }}>
+  const params = new URLSearchParams(window.location.search);
+  const selected = params.get("q");
+
+  const active = document.querySelector(`#${selected}`);
+
+  active.classList = active.classList + " border-b-4 border-primary";
+
+  const main_category = categories.find(
+    (category) => Object.keys(category)[0] === selected,
+  );
+
+  const subCategoryContainer = document.querySelector(
+    "#sub-category-container",
+  );
+
+  for (const sub_category in main_category[selected]) {
+    const subCategoryListNode = document.createElement("li");
+    const subCategorySpan = document.createElement("span");
+    subCategorySpan.classList = "capitalize font-bold p-2";
+    subCategorySpan.textContent = sub_category;
+    subCategoryListNode.appendChild(subCategorySpan);
+
+    const subCategoryListItemNode = document.createElement("ul");
+
+    const items = main_category[selected][sub_category];
+
+    subCategoryListItemNode.classList = `capitalize grid grid-flow-col grid-rows-${items.length > 10 ? Math.round(items.length / 2) : 10} gap-1`;
+
+    items.forEach((item) => {
+      const itemNode = document.createElement("li");
+      itemNode.textContent = item;
+      itemNode.classList = "hover:bg-primary/30 py-1 px-2 cursor-pointer";
+
+      subCategoryListItemNode.appendChild(itemNode);
+    });
+
+    subCategoryListNode.appendChild(subCategoryListItemNode);
+
+    subCategoryContainer.appendChild(subCategoryListNode);
+  }
+</script>

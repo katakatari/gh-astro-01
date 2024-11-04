@@ -107,7 +107,12 @@ const { challenge, className, responsive, submission_details } = Astro.props;
     }
 
     <!-- Example -->
-    <section class={cn("prose max-w-none text-center", className?.example)}>
+    <section
+      class={cn(
+        "prose max-w-none text-center dark:prose-headings:text-white",
+        className?.example,
+      )}
+    >
       <h3>Challenge Example</h3>
       <img
         src={challenge.example}

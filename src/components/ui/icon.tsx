@@ -2,6 +2,7 @@ import {
   SiAstro,
   SiCss3,
   SiDiscord,
+  SiDribbble,
   SiFramer,
   SiGithub,
   SiHtml5,
@@ -15,13 +16,26 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import type { IconBaseProps } from "react-icons/lib";
-import { LuCode2, LuCross, LuMonitor, LuMoon, LuSun } from "react-icons/lu";
+import {
+  LuCode2,
+  LuCross,
+  LuMapPin,
+  LuMonitor,
+  LuMoon,
+  LuSun,
+} from "react-icons/lu";
+import { FaFacebook, FaTwitter } from "react-icons/fa";
 import { RxChevronDown } from "react-icons/rx";
-import { MdOutlineAlternateEmail } from "react-icons/md";
+import { MdOutlineAlternateEmail, MdWaves } from "react-icons/md";
 
 const Icons = {
   github: SiGithub,
+  twitter: FaTwitter,
+  facebook: FaFacebook,
+  dribble: SiDribbble,
   linkedin: SiLinkedin,
+  pin: LuMapPin,
+  wave: MdWaves,
   astro: SiAstro,
   react: SiReact,
   discord: SiDiscord,

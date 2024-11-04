@@ -1,0 +1,129 @@
+---
+import Icon from "@components/ui/icon";
+import Icodethis from "@layouts/icodethis.astro";
+---
+
+<Icodethis
+  challenge={{
+    example: "https://icodethis.com/images/projects/coming_soon.png",
+    href: "https://icodethis.com/modes/design-to-code/545/submissions",
+    title: "Coming Soon",
+  }}
+  className={{
+    main: "space-y-20",
+  }}
+  submission_details={{
+    challenge: [
+      "Finding appropriate icons",
+      "Arranging items to fill the section of upcoming items",
+    ],
+    description:
+      "Although seeems simple at first glance, I soon realize that arranging items to flow nicely across the screen is harder than I imagine it to be. After trying with display flex and grid, the results was far from pleasant. The one in I posted here using different approach than the one submitted. In the end using columns is the closer to the goal of the challenge, while the one posted here was completed using grid and auto columns. In the future I might rework this particular challenge after gaining more knowledge to tackle the problem.",
+    href: "https://icodethis.com/modes/design-to-code/545/submissions",
+    stacks: ["HTML", "Tailwind CSS", "Javascript"],
+    time_to_finish: "Aprr. 2 Hours",
+  }}
+>
+  <section
+    class="min-h-main rounded-sm border border-border shadow-xl shadow-foreground/10"
+  >
+    <header class="inline-flex items-center gap-2 p-6">
+      <Icon name="wave" />
+      <h2 class="text-2xl font-semibold">flow ui</h2>
+    </header>
+
+    <section class="container max-w-3xl py-10">
+      <div class="max-w-lg space-y-4">
+        <h4 class="text-sm uppercase opacity-50">Coming Soon</h4>
+        <p class="">
+          A lightweight and modular front-end framework for developing fast and
+          powerful web interfaces.
+        </p>
+
+        <div class="space-y-4">
+          <p class="max-w-sm text-balance text-3xl font-bold">
+            Get notified when we launch
+          </p>
+          <div class="flex gap-3">
+            <input
+              type="text"
+              placeholder="Email address"
+              class="inline-flex h-9 w-full items-center rounded-sm border border-input bg-transparent px-3 py-2 text-sm font-medium"
+            />
+            <button
+              class="inline-flex h-9 items-center rounded-sm bg-foreground px-8 py-2 text-sm font-medium text-background"
+              >Subscribe</button
+            >
+          </div>
+          <div class="flex gap-6">
+            <Icon
+              name="twitter"
+              className="h-10 w-10 cursor-pointer p-2 hover:text-primary"
+            />
+            <Icon
+              name="github"
+              className="h-10 w-10 cursor-pointer p-2 hover:text-primary"
+            />
+            <Icon
+              name="facebook"
+              className="h-10 w-10 cursor-pointer p-2 hover:text-primary"
+            />
+            <Icon
+              name="dribble"
+              className="h-10 w-10 cursor-pointer p-2 hover:text-primary"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="overflow-x-auto overflow-y-hidden">
+      <ul
+        class="relative -left-16 grid h-80 grid-flow-col auto-rows-auto gap-6 p-6"
+      >
+        {
+          Array.from({ length: 3 }).map(() => (
+            <>
+              <li class="card-1" />
+              <li class="card-2" />
+              <li class="card-3" />
+              <li class="card-4" />
+              <li class="card-5" />
+              <li class="card-6" />
+            </>
+          ))
+        }
+      </ul>
+    </section>
+  </section>
+</Icodethis>
+
+<style>
+  .card-1,
+  .card-2,
+  .card-3,
+  .card-4,
+  .card-5,
+  .card-6 {
+    @apply rounded-sm shadow-xl shadow-foreground/10;
+  }
+
+  .card-1 {
+    @apply h-[200px] w-[400px] bg-lime-300;
+  }
+  .card-2 {
+    @apply h-[360px] w-[640px] bg-orange-300;
+  }
+  .card-3 {
+    @apply aspect-square size-60 bg-indigo-300;
+  }
+  .card-4 {
+    @apply h-[400px] w-[960px] bg-rose-300;
+  }
+  .card-5 {
+    @apply h-40 w-96 bg-zinc-300;
+  }
+  .card-6 {
+    @apply h-60 w-[960px] bg-cyan-300;
+  }
+</style>

@@ -1,0 +1,336 @@
+---
+import { Button } from "@components/ui/button";
+import Icon from "@components/ui/icon";
+import Layout from "@layouts/Layout.astro";
+import ShopifyCarousel from "./_components/shopify-carousel";
+import ShopifyFAQAccordion from "./_components/shopify-faq-accordion";
+const title = Astro.url.pathname
+  .split("/")
+  .at(-1)
+  ?.split("-")
+  .map((item) => item.at(0)?.toUpperCase() + item.slice(1))
+  .join(" ");
+
+const sceneries = [
+  {
+    src: "https://images.pexels.com/photos/620337/pexels-photo-620337.jpeg?auto=compress&cs=tinysrgb&w=600",
+    alt: "",
+  },
+  {
+    src: "https://images.pexels.com/photos/206359/pexels-photo-206359.jpeg?auto=compress&cs=tinysrgb&w=600",
+    alt: "",
+  },
+  {
+    src: "https://images.pexels.com/photos/1450360/pexels-photo-1450360.jpeg?auto=compress&cs=tinysrgb&w=600",
+    alt: "",
+  },
+  {
+    src: "https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg?auto=compress&cs=tinysrgb&w=600",
+    alt: "",
+  },
+  {
+    src: "https://images.pexels.com/photos/1933320/pexels-photo-1933320.jpeg?auto=compress&cs=tinysrgb&w=600",
+    alt: "",
+  },
+  {
+    src: "https://images.pexels.com/photos/916427/pexels-photo-916427.jpeg?auto=compress&cs=tinysrgb&w=600",
+    alt: "",
+  },
+];
+
+const features = [
+  {
+    title: "Shopify Store Setup & Configuration",
+    benefits: [
+      "Get your online store up and running quickly and efficiently",
+      "Ensure that your store is set up correctly from the start, minimizing issues later.",
+    ],
+  },
+  {
+    title: "Custom Design & Branding",
+    benefits: [
+      "Build brand recognition and trust among customers",
+      "Stand out from competitors with a visually appealing and professional store.",
+    ],
+  },
+  {
+    title: "SEO Optimization & Management",
+    benefits: [
+      "Reach a wider audience, as more users shops on mobile devices",
+      "Improve user experience and reduce bounce rates on mobile platforms",
+    ],
+  },
+];
+
+const plans = [
+  {
+    tier: "basic",
+    features: [
+      "Mobile-friendly design",
+      "SEO optimization basics",
+      "Payment gateway integration",
+      "Email support",
+    ],
+    price: 200,
+  },
+  {
+    tier: "pro",
+    features: [
+      "Custom design and branding",
+      "Mobile-responsive design",
+      "Advance SEO optimization",
+      "Priority email support",
+    ],
+    price: 400,
+  },
+  {
+    tier: "premium",
+    features: [
+      "Fully mobile-optimized design",
+      "SEO optimization",
+      "1-hour consultation session",
+      "Priority email & phone support",
+    ],
+    price: 800,
+  },
+];
+---
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&display=swap");
+
+  * {
+    font-family: Asap;
+  }
+
+  :root {
+    --primary: 128 43% 53%;
+    --primary-foreground: 210 40% 98%;
+
+    --input: 128 43% 53%;
+    --input-foreground: 128 43% 80%;
+  }
+</style>
+
+<Layout title=`Katakatari | Behance : ${title} `>
+  <main class="min-h-main space-y-10 py-28">
+    <header class="mx-auto max-w-fit">
+      <h1>{title}</h1>
+    </header>
+
+    <section class="py-20">
+      <header class="container">
+        <nav class="flex items-center justify-between">
+          <div class="max-w-40">Dream Store</div>
+          <ul
+            class="flex gap-4 px-4 dark:bg-gradient-to-r dark:from-neutral-50/30 dark:from-10% dark:via-primary dark:via-50% dark:to-neutral-50/30 dark:to-90%"
+          >
+            {
+              (
+                ["home", "about", "our pricing", "contact us", "FAQs"] as const
+              ).map((item) => <li class="capitalize">{item}</li>)
+            }
+          </ul>
+          <ul class="flex max-w-40 gap-2">
+            {
+              (["twitter", "facebook", "instagram"] as const).map((item) => (
+                <li>
+                  <Icon name={item} />
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+      </header>
+
+      <section class="">
+        <header class="flex flex-col items-center gap-6 py-20">
+          <p class="text-sm uppercase text-green-500">
+            we help launch successful online store
+          </p>
+          <h1>Launch Store on <span class="text-green-500">Shopify</span></h1>
+          <p class="mx-auto max-w-md">
+            We build high-converting, fully customized Shopify stores that drive
+            results. From setup to growth, we handle it all
+          </p>
+
+          <div class="flex gap-8">
+            <Button>Launch Store</Button>
+            <Button
+              variant="outline"
+              className="border-2 text-[hsl(var(--input-foreground))]"
+              >Our Portfolio</Button
+            >
+          </div>
+        </header>
+        <div class="overflow-x-scroll">
+          <ul class="flex w-max gap-10">
+            {
+              sceneries.map((scenery) => (
+                <li>
+                  <img
+                    src={scenery.src}
+                    alt=""
+                    class="aspect-video w-[600px] object-cover"
+                  />
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <ul
+      class="mx-auto grid max-w-fit list-decimal gap-12 font-medium md:grid-cols-3"
+    >
+      {
+        features.map((feature) => (
+          <li class="max-w-64">
+            <header>
+              <h3>{feature.title}</h3>
+            </header>
+            <ul class="list-disc">
+              {feature.benefits.map((benefit) => (
+                <li>{benefit}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+
+    <section
+      class="container grid gap-4 bg-gradient-to-r from-white/20 via-primary/80 to-white/20 py-10 dark:from-black/20 dark:via-primary dark:to-black/20 md:grid-cols-3"
+    >
+      <div class="col-span-2">
+        <header>
+          <p>You can trust us</p>
+          <h2>Your <span>Trusted Partner</span> in Shopify Success</h2>
+        </header>
+        <div class="grid grid-cols-2 gap-6">
+          <img
+            src="https://images.pexels.com/photos/3184416/pexels-photo-3184416.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt=""
+            class="aspect-auto w-full rounded-md object-cover"
+          />
+          <div>
+            <p class="max-w-80 text-balance">
+              We are a full-service agency specializing in launching Shopify
+              stores that are not only visually stunning but also built to
+              convert. With our proven strategies and deep Shopify expertise, we
+              help brands scale quickly and efficiently
+            </p>
+            <ul class="list-inside list-disc">
+              <li>50+ Successful Store Launches</li>
+              <li>Certified Shopify Experts</li>
+              <li>Comprehensive eCommerece Solutions</li>
+            </ul>
+            <Button>Free Consultation</Button>
+          </div>
+        </div>
+      </div>
+      <div class="relative">
+        <img
+          src="https://images.pexels.com/photos/3769747/pexels-photo-3769747.jpeg?auto=compress&cs=tinysrgb&w=600"
+          alt=""
+          class="aspect-square max-w-80 rounded-md object-cover"
+        /><img
+          src="https://images.pexels.com/photos/34577/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600"
+          alt=""
+          class="absolute -bottom-[10%] right-[-20%] max-w-80 scale-75 rounded-md object-cover"
+        />
+      </div>
+    </section>
+
+    <ul
+      class="flex max-w-full items-center justify-center gap-20 overflow-x-auto py-20"
+    >
+      {
+        Array.from({ length: 20 }).map(() => (
+          <li class="text-6xl font-semibold">Logo</li>
+        ))
+      }
+    </ul>
+
+    <section class="container space-y-10 font-medium">
+      <header class="mx-auto max-w-sm text-center">
+        <p class="text-sm">Best Pricing</p>
+        <h2>Our Pricing Plans</h2>
+        <p class="text-sm">
+          We are a full-service agency specializing in launching Shopify stores
+          that are not only visually stunning but also built to convert.
+        </p>
+      </header>
+
+      <ul class="mx-auto grid max-w-fit gap-16 md:grid-cols-3">
+        {
+          plans.map((plan) => (
+            <li class="max-w-72 space-y-3 rounded-md border border-primary px-6 py-10 text-center transition-all duration-300 ease-linear hover:scale-110">
+              <header>
+                <h2 class="capitalize">{plan.tier}</h2>
+              </header>
+              <ul class="list-inside list-disc text-start">
+                {plan.features.map((feature) => (
+                  <li>{feature}</li>
+                ))}
+              </ul>
+
+              <div class="text-3xl">
+                <p>$ {plan.price}</p>
+                <p class="text-sm">per month</p>
+              </div>
+              <Button variant="outline">Select a Plan</Button>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section
+      class="container mt-10 h-[800px] min-h-fit bg-gradient-to-b from-primary/50 to-background px-0"
+    >
+      <div class="relative flex min-h-96 flex-col bg-primary py-20 text-center">
+        <header class="mx-auto max-w-md space-y-4">
+          <h2>We craft custom strategies for your shopify store</h2>
+          <p class="text-sm">
+            We are a full-service agency specializing in launching Shopify
+            stores that are not only visually stunning but also built to convert
+          </p>
+          <div class="absolute right-1/2 top-[70%] translate-x-1/2">
+            <div
+              class="absolute -top-[15%] right-1/2 aspect-square max-w-fit translate-x-1/2 content-center rounded-full bg-primary-foreground p-2 text-primary"
+            >
+              <p>Launch Store</p>
+            </div>
+            <img
+              src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              alt=""
+              class="aspect-video w-[1260px] object-cover"
+            />
+          </div>
+        </header>
+      </div>
+    </section>
+
+    <section class="container max-w-6xl py-10">
+      <header>
+        <p class="text-sm text-primary">Real clients</p>
+        <h2 class="font-semibold">
+          Our Clients <span class="text-primary">Reviews</span>
+        </h2>
+      </header>
+      <ShopifyCarousel client:load />
+    </section>
+
+    <section class="container max-w-4xl">
+      <header>
+        <h2 class="font-semibold">
+          <span class="text-primary">FAQ </span>&lpar;Frequently Asked
+          Questions&rpar;
+        </h2>
+      </header>
+      <ShopifyFAQAccordion client:load />
+    </section>
+  </main>
+</Layout>

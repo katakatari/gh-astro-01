@@ -6,6 +6,7 @@ import {
   SiFramer,
   SiGithub,
   SiHtml5,
+  SiInstagram,
   SiJavascript,
   SiLinkedin,
   SiMongodb,
@@ -17,6 +18,9 @@ import {
 } from "react-icons/si";
 import type { IconBaseProps } from "react-icons/lib";
 import {
+  LuArrowLeft,
+  LuArrowRight,
+  LuCheck,
   LuCode2,
   LuCross,
   LuMapPin,
@@ -24,7 +28,7 @@ import {
   LuMoon,
   LuSun,
 } from "react-icons/lu";
-import { FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaStar, FaTwitter } from "react-icons/fa";
 import { RxChevronDown } from "react-icons/rx";
 import { MdOutlineAlternateEmail, MdWaves } from "react-icons/md";
 
@@ -34,7 +38,9 @@ const Icons = {
   facebook: FaFacebook,
   dribble: SiDribbble,
   linkedin: SiLinkedin,
+  instagram: SiInstagram,
   pin: LuMapPin,
+  check: LuCheck,
   wave: MdWaves,
   astro: SiAstro,
   react: SiReact,
@@ -51,10 +57,13 @@ const Icons = {
   code: LuCode2,
   sun: LuSun,
   moon: LuMoon,
+  star: FaStar,
   monitor: LuMonitor,
   cross: LuCross,
   email: MdOutlineAlternateEmail,
   "chevron-down": RxChevronDown,
+  "arrow-right": LuArrowRight,
+  "arrow-left": LuArrowLeft,
 } as const;
 
 export type IconName = keyof typeof Icons;

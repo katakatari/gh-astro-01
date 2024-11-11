@@ -108,9 +108,9 @@ const allPosts = Object.values(
       <ul class="not-prose grid list-none gap-4 prose-li:p-0 md:grid-cols-3">
         {
           allPosts.slice(0, 3).map((post) => (
-            <li class="group prose dark:prose-invert">
+            <li class="group relative overflow-clip rounded-md transition-all ease-linear hover:scale-110">
               <a href={post?.url} class="relative overflow-clip rounded-md">
-                <p class="absolute flex min-h-full w-full items-end rounded-sm bg-black/20 p-2 text-start text-white">
+                <p class="absolute bottom-0 flex min-h-fit w-full items-end bg-black/60 p-4 text-start font-semibold text-white backdrop-blur-sm backdrop-opacity-50 group-hover:bg-black/80">
                   {post?.frontmatter?.title}
                 </p>
                 <img

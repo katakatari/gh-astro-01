@@ -1,0 +1,53 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "Bun Runtime"
+created_at: 2024-10-31
+author: "Bayu Utomo"
+image:
+  url: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.bram.us%2Fwordpress%2Fwp-content%2Fuploads%2F2022%2F07%2Fbun.jpeg&f=1&nofb=1&ipt=36776bd07659a50221bf3692da639a2d7382face29431f380eb6b8806a492e3c&ipo=images"
+  alt: "code in background"
+tags: ["blog", "bun", "tips"]
+---
+
+## Table of Contents
+- [Bun runtime](#bun-runtime)
+- [Essential CLI command](#essential-cli-command)
+- [Script example](#script-example)
+
+## Bun Runtime
+
+Bun is one of the runtime for JavaScript and TypeScript apps aside from the most used Node.js and Deno. It is designed as a drop-in replacement for Node.js. Written in Zig and powered by JavaScriptCore. The main selling point of Bun is its speed and many API built into Bun.
+
+Some examples are hashing utilities that by default uses Argon2id, but you can choose other algorithm like scrypt or bcrypt that can be easily uses by using Bun.password. The other is native websocket API that you can use using Bun.serve.
+
+#### Essential CLI command
+
+<sub>*_Some of the list of items below have link that will direct you to the official source if needed._</sub>
+
+- `bun -v` or `bun --version` - check the version of bun installed in your system.
+
+- `bun upgrade` - Check the latest bun version and updated it when available.
+
+- `bun install` - the replacement of `npm install` to install package in the `package.json`. <sub>_[More info](https://bun.sh/docs/cli/install)_</sub>
+
+- `bunx <command> <option>` - the replacement of `npx <command> <option>` if you came from Node.js. <sub>_[More info](https://bun.sh/docs/cli/bunx)_</sub>
+
+- `bun add <package>` - can also be used interchangibly with `bun install <package>` or `bun i <package>` to add particular package to your project. <sub>_[More info](https://bun.sh/docs/cli/add)_</sub>
+
+- `bun update` - To update all dependencies to the latest version. <sub>_[More info](https://bun.sh/docs/cli/update)_</sub>
+
+#### Script example
+
+```json
+// ./package.json
+  "scripts": {
+
+    // running astro development environment using `bun development` or `bun run development`
+    "development": "astro dev",
+
+    // running both convex:dev and astro:dev scripts in parallel using `bun dev` or `bun run dev`
+    "dev": "bun run convex:dev & bun run astro:dev",
+    "convex:dev": "convex dev",
+    "astro:dev" : "astro dev",
+  }
+```

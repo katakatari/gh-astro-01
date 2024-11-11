@@ -29,9 +29,9 @@ const allPosts = Object.values(
     <ul class="grid gap-4 md:grid-cols-3">
       {
         allPosts.map((post) => (
-          <li class="group relative overflow-clip rounded-md">
+          <li class="group relative overflow-clip rounded-md transition-all ease-linear hover:scale-110">
             <a href={post?.url}>
-              <p class="absolute flex min-h-full w-full items-end bg-black/20 p-4 text-start text-white">
+              <p class="absolute bottom-0 flex min-h-fit w-full items-end bg-black/60 p-4 text-start font-semibold text-white backdrop-blur-sm backdrop-opacity-50 group-hover:bg-black/80">
                 {post?.frontmatter?.title}
               </p>
               <img

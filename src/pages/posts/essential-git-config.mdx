@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: "Essential Git Config"
 created_at: 2024-10-30
-updated_at: 2024-10-31
+updated_at: 2024-11-15
 description: "Some essential git config to increase productivity"
 author: "Bayu Utomo"
 image:
@@ -14,9 +14,10 @@ tags: ["blog", "git"]
 
 ## Goal
 
-- **Edit commit messages using VS Code**
-- **Add default push branch**
-- **Add a default global `.gitignore`**
+- [**Write commit messages using VS Code**](#write-commit-messages-from-vs-code)
+- [**Add default push branch**](#default-push-to-the-current-branch)
+- [**Ignoring file or directory**](#ignore-file-or-directory)
+- [**Add a default global .gitignore**](#global-gitignore)
 
 As developers, Git is a tool we use daily. Most of the time, the commands we use are the same: `git add <filename>`, `git commit -m <message>`, and `git push origin <branch_name>`. While using the default commands is good enough, wouldn't it be better to shorten some commands that require additional input, like `git commit` and `git push`, to reduce the chance of making mistakes?
 
@@ -62,9 +63,63 @@ Add the following to the `.gitconfig` file:
   ```
 Now, from your local machine, when you check out a new branch, work on a new feature, and want to push your changes to your Git repository on GitHub, you can simply write `git push`, and it will automatically create a new branch on GitHub and push the changes to that branch.
 
+## Ignore File or Directory
+
+As a developer, there are often files or directories that we want to be ignored and not committed to `GitHub`. The way we tell `git` to ignore a specific file or directory is by adding it to the `.gitignore` file. The best practice is to put the `.gitignore` file in the project root directory. By default, `git` will ignore any file or directory listed in the `.gitignore` file, so we don't have to do any other configuration. So, how do we ignore a specific file or directory?
+
+- **Ignoring a file**
+  
+  To add a file to be ignored by `git`, write the absolute path to that file from the project root directory. For example, if we have a `.env` file we want to ignore, we can simply add `.env` to the project's `.gitignore` file. And that's it! Simple, isn't it?
+
+  Now, what if we want to add multiple files that have the same prefix or extension? Do we have to write every single item to the `.gitignore` file? Yikes!
+
+  Fortunately, we don't have to do that. We can simply use the wildcard `*` as a replacement. For example, when we need to ignore any file starting with `.env`, such as `.env.production`, `.env.local`, etc., we can simply write `.env*` and `git` will ignore any file starting with `.env`.
+  
+  Likewise, when we need to ignore any file ending with a specific pattern, we can use `*.ignorethis`. This means any file ending with `.ignorethis` will be ignored by `git`.
+
+  ```
+  # .gitignore
+  # env file
+  # ignore only .env file
+  .env
+
+  # ignore any .env file
+  .env*
+
+  # ignore any file ending with ignore_this
+  *ignore_this
+  ```
+
+- **Ignoring a directory**
+
+  We've learned that the way to ignore a file is by adding the absolute path to the specific file we want to ignore. But, how about ignoring a directory?
+
+  Well, it's the same as adding a file to the `.gitignore` file, either by using a prefix, suffix, or matching the absolute path. For example, when we want to add `node_modules` to be ignored by `git`, we can write `node_modules` to `.gitignore` and `git` will ignore every file inside `node_modules`.
+
+  ```
+  # .gitignore
+  # ignore node_modules directory and every file inside of it
+  node_modules # or /node_modules or node_modules/ is the same
+  ```
+
+- **Ignoring all files or directories except some**
+
+  Now that we've learned how to ignore files and directories, the next tip we're going to learn is how to make an exception. For example, let's say that you want to ignore all `.env` files except `.env.example`. The way to do it is to write the exception with an exclamation mark at the start.
+
+  ```
+  # .gitignore
+  # ignore all .env files
+  .env*
+
+  # except .env.example
+  !.env.example
+  ```
+
+Next, we will learn how to add a safety measure in case we forget to add a `.gitignore` file to our repository.
+
 ## Global .gitignore
 
-Another useful configuration is a global `.gitignore`. It helps to make sure you don't accidentally push files that might be confidential or unimportant, like `.env` or `node_modules`. While it's best practice to always include a `.gitignore` in every project, having a global `.gitignore` serves as a safety net in case you forget to add it to a project and accidentally push sensitive information like `API_KEY` or `DATABASE_URL` for the whole world to see. Yikes!
+Another useful configuration is a global `.gitignore`. It helps ensure you don't accidentally push files that might be confidential or unimportant, like `.env` or `node_modules`. While it's best practice to always include a `.gitignore` in every project, having a global `.gitignore` serves as a safety net in case you forget to add it to a project and accidentally push sensitive information like `API_KEY` or `DATABASE_URL` for the whole world to see. Yikes!
 
 So how do you set it up?
 
@@ -91,17 +146,29 @@ Add the file(s) or directory(ies) that you want to be ignored by default in ever
 
 - **Add the `.gitignore` to `.gitconfig`**
 
-Lastly, you will need to add `.gitignore_global` to your global `.gitconfig` by adding this line `excludesfile = /home/bayuutomo/.gitignore_global` to the `[core]` block.
+Lastly, you will need to add `.gitignore_global` to your global `.gitconfig` by adding this line `excludesfile = /home/<username>/.gitignore_global` to the `[core]` block.
 
   ```
   # your other config
+  # assuming you put .gitignore_filename in your root directory
+  
+  # on Linux or Mac
   [core]
-	  excludesfile = <the_location_of_your_.gitignore_global> # or /home/<username>/<.gitignore_filename> on linux and mac
-	  excludesfile = <the_location_of_your_.gitignore_global> # or  %USERPROFILE%\<.gitignore_filename> on windows
+      excludesfile = <the_location_of_your_.gitignore_global>
+      # or /home/<username>/<.gitignore_filename>
+  
+  # on Windows
+  [core]
+      excludesfile = <the_location_of_your_.gitignore_global> 
+      # or ~\<.gitignore_filename>
+      # equivalent of Drive:\<Users>\<your_username>
   ```
 
+You might notice that on Windows, the root directory is usually equivalent to `Drive:\Users\<your_username>`. To allow `.gitconfig` to detect your `.gitignore` file in your root directory, you should write `~/<.gitignore_filename>`. However, if you want to access it via PowerShell, the CLI command is `%USERPROFILE%\<directory_or_filename>`.
 
-Now, every time you are working on a new project, this `.gitignore` will be applied by default, so you can be sure that no more `API_KEY` is being shared with the world when you forget to add it to the project's `.gitignore`. You can test this by creating the file or directory that you have included in the global `.gitignore` and running `git status` in the terminal.
+Now, every time you work on a new project, this `.gitignore` will be applied by default. This ensures that sensitive information, such as `API_KEY`, is not accidentally shared when you forget to add it to the project's `.gitignore`. You can test this by creating the file or directory that you have included in the global `.gitignore` and running `git status` in the terminal.
+
+You can confirm it by using `git status` in your current git repository. Files or directories that you've added to your global `.gitignore` will not be shown in the unstaged files or directories. However, remember that this is only a guardrail, and you should follow best practices by adding a `.gitignore` file to your repository when necessary.
 
 These are some essential `.gitconfig` settings that I use throughout my developer journey. I hope they benefit you, and I might add more when I find other useful configurations in the future.
 

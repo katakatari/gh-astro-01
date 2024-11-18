@@ -1,0 +1,100 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "Tailwind CSS Tips"
+created_at: 2024-11-18
+author: "Bayu Utomo"
+image:
+  url: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600"
+  alt: "code in background"
+tags: ["blog", "tailwind CSS", "tips"]
+---
+
+Tailwind CSS has revolutionized web development with its utility-first approach to styling. This methodology allows developers to create modern, responsive designs directly within their HTML. In this post, we'll share some valuable tips and tricks to help you maximize the potential of Tailwind CSS and streamline your development workflow.
+
+## Table of contents:
+
+- Basics
+  - [Installation](#installation)
+  - [VS Code Extension](#vs-code-extension)
+- Additional Tips
+  - [VS Code Settings](#additional-vs-code-settings)
+  - [Plugins](#plugins)
+    - Prettier
+    - Typography
+    - Container Queries
+    - Animation
+    - Fluid
+  - Libraries with Excellent Tailwind CSS Integration
+    - [CLSX](https://www.npmjs.com/package/clsx) - A utility for constructing className strings conditionally.
+    - [Tailwind Merge](https://www.npmjs.com/package/tailwind-merge) - Utility function to efficiently merge Tailwind CSS classes in JS without style conflicts.
+    - [Class Variance Authority](https://cva.style/docs)
+    - [ShadCN](https://ui.shadcn.com/) - Framework Agnostic
+    - [Aceternity](https://ui.aceternity.com/) - React Focused with Framer Motion
+    - [Native Wind](https://www.nativewind.dev/) - Tailwind CSS for React Native
+
+### Installation
+
+For installation, it is recommended to visit the [official Tailwind CSS website](https://tailwindcss.com/) for a comprehensive guide, including integration with various frontend frameworks.
+
+Tailwind CSS Official Documentation:
+  - [Basic Installation](https://tailwindcss.com/docs/installation)
+  - [Framework Integration](https://tailwindcss.com/docs/installation/framework-guides)
+  - [Using CDN](https://tailwindcss.com/docs/installation/play-cdn)
+
+### VS Code Extension
+
+If you are using VS Code as your code editor, Tailwind CSS offers an official extension that enhances your development experience. This extension includes IntelliSense for class names, syntax highlighting, and linting, making it easier to write and maintain your Tailwind CSS code. You can install the extension from the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) or by pressing `Ctrl + Shift + X` and searching for "Tailwind CSS IntelliSense".
+
+### Additional VS Code Settings
+
+For tighter integration with VS Code and to improve your experience when working with Tailwind CSS, there are optional VS Code settings that you can add to your `settings.json` file. These settings include enabling Tailwind CSS class name sorting, configuring the linter to recognize Tailwind CSS classes, and setting up custom color highlighting. Here are some recommended settings:
+
+- First, create a `settings.json` file inside your `.vscode` folder if you haven't already.
+  ```
+  # Example project structure
+
+  📦root-directory
+  ┣ 📦.vscode
+  ┃ ┗ 📜settings.json
+  ┣ 📂src
+  ┃ ┣ 📂components
+  ┃ ┗ 📂other-directories
+  ┃ 📂other-directories
+  ┣ 📜other-files
+  ┣ 📜package.json
+  ┗ 📜tsconfig.json
+  ```
+- Add `file.association` to tell VS Code to always open `.css` files in Tailwind CSS mode. This enables your code editor to recognize Tailwind CSS syntax inside `.css` files.
+
+  ```json
+  // .vscode/settings.json
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+  ```
+  Without this setting, VS Code will give a warning as shown below.
+
+  ```
+  Unknown at rule @tailwind css(unknownAtRules) [Ln 3, Col 1]
+  Unknown at rule @apply css(unknownAtRules) [Ln 52, Col 7]
+  ```
+  This is because VS Code by default does not recognize it as valid CSS syntax.
+
+- Enable quick suggestions by adding `editor.quickSuggestions`. By default, VS Code will not trigger completions when editing "string" content, for example within JSX attribute values. Now, whenever you type a Tailwind CSS class, it will give quick suggestions by default. Without this setting, you need to trigger it by pressing `Ctrl + Space` or writing a word from a multi-word Tailwind CSS class, e.g., `justify` before IntelliSense kicks in with `justify-center`.
+
+  ```json
+  // .vscode/settings.json
+  "editor.quickSuggestions": {
+    "strings": "on"
+  }
+  ```
+
+Both of these settings are recommended by the official Tailwind CSS extension.
+
+### Plugins
+
+- [Tailwind CSS Prettier Plugin](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier#how-classes-are-sorted)
+- [Tailwind CSS Typography](https://github.com/tailwindlabs/tailwindcss-typography)
+- [Tailwind CSS Container Queries](https://github.com/tailwindlabs/tailwindcss-container-queries)
+- [Fluid Tailwind CSS](https://fluid.tw/)
+- [Tailwind CSS Animate](https://www.npmjs.com/package/tailwindcss-animate)
